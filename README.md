@@ -50,9 +50,17 @@ Define _beside_ in terms of _besideRatio_.
 
 ### Exercise 6 : quartet
 
-Using _above_ and _beside_, define a function _quartet_ which takes four pictures _nw_, _ne_, _sw_ and _se_ as inputs. The names of the pictures hint at how they should be organized.
+Using _above_ and _beside_, define a function _quartet_ which takes four pictures _nw_, _ne_, _sw_ and _se_ as inputs and organizes them in a 2x2 grid. The names of the pictures hint at where in the grid they should be put.
+
+One of the most interesting and powerful properties of the combinators in Henderson's paper is that they are _closed under the means of combination_. That means that there is no difference between a "simple" picture (like F and George) and a "composite" picture. They're all just pictures. There are no arbitrary restrictions on what you can do with them. You're free to use a composite picture as a building block to create a more complex composite picture. To get a feel for this, try to create this picture, using the combinators we have defined so far:
 
 ### Exercise 7 : nonet
+
+Define a function _nonet_ which is like _quartet_, except it creates a picture by organizing nine input pictures in a 3x3 grid. The _aboveRatio_ and _besideRatio_ functions should be helpful to accomplish this.
+
+Try to create the following image:
+
+Again, a nonet is just a picture, which can be used to create more complex pictures (including nonets). See if you can create the following picture:
 
 ### Exercise 8 : over
 
