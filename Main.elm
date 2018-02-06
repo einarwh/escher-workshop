@@ -11,9 +11,10 @@ import Svg exposing (Svg)
 main : Svg msg
 main = 
   let 
-    box = { a = { x = 30.0, y = 40.0 }
-          , b = { x = 380.0, y = 0.0 }
-          , c = { x = 0.0, y = 380.0 } }
+    box = { a = { x = 0.0, y = 0.0 }
+          , b = { x = 200.0, y = 0.0 }
+          , c = { x = 0.0, y = 200.0 } }
+    f = createPicture fLetter
     h = createPicture hLetter
     e = createPicture eLetter
     n = createPicture nLetter
@@ -35,5 +36,5 @@ main =
     fish = createPicture hendersonFishShapes
     g = createPicture george 
   in     
-    box |> e |> toSvg (440, 440)
+    box |> f |> toSvg (200, 200)
  

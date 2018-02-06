@@ -16,6 +16,8 @@ Check out repo.
 
 You'll see that we're not starting from scratch.
 
+<img src="files/letter-f.svg" width="200" height="200">
+
 ## Exercises
 
 We will start by defining a number of simple picture transformations; functions of type Picture -> Picture.
@@ -23,6 +25,12 @@ We will start by defining a number of simple picture transformations; functions 
 ### Exercise 1 : turn
 
 Define a function _turn_, which rotates a picture 90 degrees counter-clockwise around the center of its bounding box.
+
+The key to success is to exploit the magical self-fitting nature of the rendering. We know that when the box changes, the rendering changes also. So to turn the picture, all we need to do is turn the box - the picture has no choice but to follow along!
+
+```
+(a’, b’, c’) = (a + b, c, -b)
+```
 
 You should observe that turning a picture twice rotates it 180 degrees, and turning it four times produces the original picture.
 
@@ -78,4 +86,3 @@ Again, a nonet is just a picture, which can be used to create more complex pictu
 
 ### Exercise 13 : square-limit
 
-<img src="files/e.svg" width="100%" height="100">
