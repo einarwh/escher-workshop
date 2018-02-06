@@ -14,12 +14,12 @@ blank _ = []
 -- Exercise 1
 
 turn : Picture -> Picture
-turn p = p  
+turn p = turnBox >> p  
 
 -- Exercise 2
 
 flip : Picture -> Picture 
-flip p = p 
+flip p = flipBox >> p 
 
 -- Exercise 3
 

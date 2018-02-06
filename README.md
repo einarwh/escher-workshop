@@ -26,6 +26,8 @@ We will start by defining a number of simple picture transformations; functions 
 
 Define a function _turn_, which rotates a picture 90 degrees counter-clockwise around the center of its bounding box.
 
+<img src="files/letter-f-turned.svg" width="200" height="200">
+
 The key to success is to exploit the magical self-fitting nature of the rendering. We know that when the box changes, the rendering changes also. So to turn the picture, all we need to do is turn the box - the picture has no choice but to follow along!
 
 ```
@@ -37,6 +39,12 @@ You should observe that turning a picture twice rotates it 180 degrees, and turn
 ### Exercise 2 : flip
 
 Define a function _flip_, which flips a picture about the center vertical axis of its bounding box.
+
+<img src="files/letter-f-flipped.svg" width="200" height="200">
+
+```
+(a’, b’, c’) = (a + b, -b, c)
+```
 
 Note that flipping a picture twice (indeed any even number of times) produces the original picture.
 
