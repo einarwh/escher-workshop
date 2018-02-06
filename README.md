@@ -12,6 +12,10 @@ The focus in this workshop is on abstraction and composition. It happens to use 
 
 ## Getting started
 
+Check out repo.
+
+You'll see that we're not starting from scratch.
+
 ## Exercises
 
 We will start by defining a number of simple picture transformations; functions of type Picture -> Picture.
@@ -73,3 +77,5 @@ Again, a nonet is just a picture, which can be used to create more complex pictu
 ### Exercise 12 : corner
 
 ### Exercise 13 : square-limit
+
+<img src="files/e.svg" width="100%" height="100">

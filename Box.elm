@@ -8,32 +8,25 @@ type alias Box =
   , c : Vector }
 
 turnBox : Box -> Box
-turnBox { a, b, c } = 
-  { a, b, c }
+turnBox box = box 
 
 flipBox : Box -> Box 
-flipBox { a, b, c } = 
-  { a, b, c }
+flipBox box = box 
 
 tossBox : Box -> Box 
-tossBox { a, b, c } = 
-  { a, b, c }
+tossBox box = box
 
 moveVertically : Float -> Box -> Box 
-moveVertically f { a, b, c } = 
-  { a, b, c }
+moveVertically f box = box 
   
 moveHorizontally : Float -> Box -> Box 
-moveHorizontally f { a, b, c } = 
-  { a, b, c }
+moveHorizontally f box = box 
 
 scaleVertically : Float -> Box -> Box 
-scaleVertically f { a, b, c } = 
-  { a, b, c }
+scaleVertically f box = box 
 
 scaleHorizontally : Float -> Box -> Box 
-scaleHorizontally f { a, b, c } = 
-  { a, b, c }
+scaleHorizontally f box = box 
 
 splitVertically : Float -> Box -> (Box, Box)
 splitVertically f box = 

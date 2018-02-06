@@ -35,5 +35,5 @@ main =
     fish = createPicture hendersonFishShapes
     g = createPicture george 
   in     
-    (squareLimit 4 fish) box |> toSvg (440, 440)
+    box |> e |> toSvg (440, 440)
  
