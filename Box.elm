@@ -20,8 +20,12 @@ flipBox { a, b, c } =
   , b = neg b
   , c = c } 
 
+-- (a’, b’, c’) = (a + (b + c) / 2, (b + c) / 2, (c − b) / 2)
 tossBox : Box -> Box 
-tossBox box = box
+tossBox { a, b, c } = 
+  { a = add a (scale 0.5 (add b c))
+  , b = scale 0.5 (add b c)
+  , c = scale 0.5 (sub c b) }
 
 moveVertically : Float -> Box -> Box 
 moveVertically f box = box 

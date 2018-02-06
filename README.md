@@ -50,7 +50,13 @@ Note that flipping a picture twice (indeed any even number of times) produces th
 
 ### Exercise 3 : toss
 
-Define a function _toss_, which resembles tossing a picture light-heartedly into the air! More precisely, it should rotate the picture 45 degrees around top left corner of the bounding box, and also shrinks the sides of the bounding box by a factor of √2.
+Define a function _toss_, which resembles tossing a picture light-heartedly into the air! More precisely, it should rotate the picture 45 degrees around top left corner of the bounding box, and also shrink the sides of the bounding box by a factor of √2.
+
+<img src="files/letter-f-toss.svg" width="255" height="255">
+
+```
+(a’, b’, c’) = (a + (b + c) / 2, (b + c) / 2, (c − b) / 2)
+```
 
 ### Exercise 4 : above
 

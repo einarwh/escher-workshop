@@ -24,7 +24,7 @@ flip p = flipBox >> p
 -- Exercise 3
 
 toss : Picture -> Picture 
-toss p = p 
+toss p = tossBox >> p 
 
 -- Exercise 4
 
