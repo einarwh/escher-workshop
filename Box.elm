@@ -28,20 +28,36 @@ tossBox { a, b, c } =
   , c = scale 0.5 (sub c b) }
 
 moveVertically : Float -> Box -> Box 
-moveVertically f box = box 
+moveVertically f { a, b, c } = 
+  { a = add a (scale f c)
+  , b = b
+  , c = c } 
   
 moveHorizontally : Float -> Box -> Box 
-moveHorizontally f box = box 
+moveHorizontally f { a, b, c } = 
+  { a = add a (scale f b)
+  , b = b
+  , c = c } 
 
 scaleVertically : Float -> Box -> Box 
-scaleVertically f box = box 
+scaleVertically f { a, b, c } = 
+  { a = a
+  , b = b 
+  , c = scale f c } 
 
 scaleHorizontally : Float -> Box -> Box 
-scaleHorizontally f box = box 
+scaleHorizontally f { a, b, c } = 
+  { a = a
+  , b = scale f b  
+  , c = c } 
 
 splitVertically : Float -> Box -> (Box, Box)
 splitVertically f box = 
-  (box, box)
+  let 
+    top = box |> moveVertically (1 - f) |> scaleVertically f 
+    bot = box |> scaleVertically (1 - f)
+  in
+    (top, bot)
 
 splitHorizontally : Float -> Box -> (Box, Box)
 splitHorizontally f box = 

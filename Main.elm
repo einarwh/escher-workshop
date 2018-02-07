@@ -36,5 +36,5 @@ main =
     fish = createPicture hendersonFishShapes
     g = createPicture george 
   in     
-    box |> toss f |> toSvg (255, 255)
+    box |> above f (Picture.flip f) |> toSvg (255, 255)
  

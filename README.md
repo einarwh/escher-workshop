@@ -64,6 +64,10 @@ Now we'll start combining pictures to create more complex, composite pictures.
 
 Define a function _above_, which takes two pictures _p1_ and _p2_ as parameters. It should produce a new picture which fills the upper half of the bounding box with _p1_ and the lower half with _p2_.
 
+So calling `above f (flip f)` should yield the following:
+
+<img src="files/above-f-flip-f.svg" width="200" height="200">
+
 Define a more general function _aboveRatio_ that takes integers _n_ and _m_ as parameters, as well as _p1_ and _p2_ as above. The integers _n_ and _m_ are weights allocated to _p1_ and _p2_ respectively. 
 
 Now implement _above_ in terms of _aboveRatio_.
