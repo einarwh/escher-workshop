@@ -52,7 +52,7 @@ Note that flipping a picture twice (indeed any even number of times) produces th
 
 Define a function _toss_, which resembles tossing a picture light-heartedly into the air! More precisely, it should rotate the picture 45 degrees around top left corner of the bounding box, and also shrink the sides of the bounding box by a factor of √2.
 
-<img src="files/letter-f-tossed.svg" width="255" height="255">
+<img src="files/letter-f-tossed.svg" width="235" height="235">
 
 ```
 (a’, b’, c’) = (a + (b + c) / 2, (b + c) / 2, (c − b) / 2)
