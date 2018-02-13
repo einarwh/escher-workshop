@@ -46,9 +46,11 @@ We replaced the letter F with a stickman called George.
 
 At this point, you probably have questions! Here are some answers, that may or may not fit those questions. First, `letterF` and `george` are shapes, mere data. More interestingly, `createPicture` is a function that creates a picture out of a shape. And most interestingly, a picture is also a function (!) - from a bounding box to an SVG rendering. This makes a picture somewhat magical, in that it can produce a bunch of different renderings, based on the box you give it.
 
-Try to mess with the bounding box passed to George and see what happens. He has no choice but to stretch and contract to fit the box! Poor ol' George!
+Try to mess with the bounding box passed to George and see what happens. He has no choice but to stretch and contract to fit the box! Poor ol' George! Here he is all thin and skewed and weird: 
 
-Let's return to the rendering of the letter F, and try to understand what happens a little bit better. 
+<img src="files/figure-george.svg" width="200" height="200">
+
+Let's return to the rendering of the letter F, and try to understand what happens a little bit better. Adding some visual aids for the bounding box should help.
 
 <img src="files/letter-f-arrows.svg" width="199" height="199">
 
