@@ -18,17 +18,15 @@ You should start by cloning this repo, like so:
 git clone https://github.com/einarwh/escher-workshop
 ````
 
-You should see that we're not starting from scratch. You get a number of `.elm` files containing Elm modules. Most of them we can and will ignore in this workshop. 
+You'll see that we're not starting from scratch. You get a number of `.elm` files containing Elm modules. Most of them we can and will ignore in this workshop. But some of them we'll become familiar with. 
 
-You can start the application by typing `elm-reactor` in your terminal. If you open a browser at `http://localhost:8000/Main.elm` you should see something that looks like this:
+First though, you can start the application by typing `elm-reactor` in your terminal. If you open a browser at `http://localhost:8000/Main.elm` you should see something that looks like this:
 
 <img src="files/letter-f.svg" width="200" height="200">
 
 Which is an SVG rendering of the letter F.
 
-If you open `Main.elm` in your editor, you'll see that we import a bunch of stuff. 
-
-Try to change this line:
+Open `Main.elm` in an editor and try to change this line:
 
 ```
 box |> createPicture fLetter
@@ -46,15 +44,19 @@ You should see something like this:
 
 We replaced the letter F with a stickman called George.
 
-At this point, you probably have questions! Here are some answers, that may or may not fit those questions. First, `letterF` and `george` are shapes, mere data defined in `Letter.elm` and `Figure.elm` respectively. More interestingly, `createPicture` is a function that creates a picture out of a shape. And most interestingly, a picture is also a function (!) - from a bounding box to an SVG rendering. This makes a picture somewhat magical, in that it can produce a bunch of different renderings, based on the box you give it.
+At this point, you probably have questions! Here are some answers, that may or may not fit those questions. First, `letterF` and `george` are shapes, mere data. More interestingly, `createPicture` is a function that creates a picture out of a shape. And most interestingly, a picture is also a function (!) - from a bounding box to an SVG rendering. This makes a picture somewhat magical, in that it can produce a bunch of different renderings, based on the box you give it.
 
-Try to mess with the bounding box passed to George and see what happens. He has no choice but to stretch and contract to fit the box! 
+Try to mess with the bounding box passed to George and see what happens. He has no choice but to stretch and contract to fit the box! Poor ol' George!
 
 Let's return to the rendering of the letter F, and try to understand what happens a little bit better. 
 
 <img src="files/letter-f-arrows.svg" width="199" height="199">
 
-If you open `Box.elm`, you'll see that a box is defined by three vectors: `a`, `b` and `c`. 
+If you open `Box.elm`, you'll see that a box is defined by three vectors: `a`, `b` and `c`. The red arrow is the `a` vector, which points from the origin (0, 0) to the bottom left corner of the box. The orange arrow is the `b` vector, which points from the bottom left corner to the bottom right corner, and spans out the box horizontally. The purple arrow points from the bottom left corner to the top left corner, and spans it out vertically. (What about the top right corner? It is implicitly defined by vectors `b` and `c` - you can get there from the bottom left corner if you follow `b` and then `c` or vice versa.)
+
+Speaking of vectors: you might want to take a look at `Vector.elm` as well. You'll see that our vectors have two dimensions, `x` and `y`. We can add vectors together (by adding up the `x` and `y` dimensions separately), negate a vector (effectively have it pointing the other way) and subtract a vector from another. We can also scale a vector by some factor; a factor of 2 doubles it, a factor of 0.5 makes it half as long. And finally we can calculate the vector's length or magnitude. 
+
+And that's about it for theory. Do you feel ready? You are ready. We should start doing some exercises!
 
 ## Exercises
 
@@ -62,15 +64,28 @@ We will start by defining a number of simple picture transformations; functions 
 
 ### Exercise 1 : turn
 
-Define a function _turn_, which rotates a picture 90 degrees counter-clockwise around the center of its bounding box.
+Your task is to define a function _turn_, which rotates a picture 90 degrees counter-clockwise around the center of its bounding box.
 
 <img src="files/letter-f-turned.svg" width="200" height="200">
 
-The key to success is to exploit the magical self-fitting nature of the rendering. We know that when the box changes, the rendering changes also. So to turn the picture, all we need to do is turn the box - the picture has no choice but to follow along!
+Open the file `Picture.elm`. You'll see that the type signature for the `turn` function has already been written, along with a dummy implementation that does nothing - it just returns the picture you pass it. 
 
+```
+turn : Picture -> Picture
+turn p = p 
+```
+
+The key to solving this task is to exploit the magical self-fitting nature of the picture. We know that when the box changes, the rendering changes also. So to turn the picture, all we need to do is turn the box - the picture has no choice but to follow along! It's poor ol' George all over again. So you should open `Box.elm` and define a function `turnBox` there that handles the box-turning, and then have your `turn` function call `turnBox`.
+
+But how do you turn the box? Well, you'll want the new `a` vector to point to the bottom right corner of the original box. You can create that vector by adding the original `a` vector and the original `b` vector together. The new `b` vector needs to point straight up, just like the original `c` vector. And finally, the new `c` vector should point to the left, in the exact opposite direction as the original `b` vector. 
+
+That's a lot of words for something quite simple. Summarized in terms of vector arithmetic, it looks like this:
 ```
 (a’, b’, c’) = (a + b, c, -b)
 ```
+
+(Of course, you'll need to substitute the vector addition 
+function `add` for `+` and so forth.)
 
 You should observe that turning a picture twice rotates it 180 degrees, and turning it four times produces the original picture.
 
