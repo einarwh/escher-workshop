@@ -40,7 +40,7 @@ box |> createPicture george
 
 You should see something like this: 
 
-<img src="files/george.svg" width="200" height="200">
+<img src="files/figure-george.svg" width="200" height="200">
 
 We replaced the letter F with a stickman called George.
 
@@ -64,7 +64,9 @@ We will start by defining a number of simple picture transformations; functions 
 
 ### Exercise 1 : turn
 
-Your task is to define a function _turn_, which rotates a picture 90 degrees counter-clockwise around the center of its bounding box.
+Your task is to define a function `turn`, which rotates a picture 90 degrees counter-clockwise around the center of its bounding box. 
+
+Applied to the letter F, it should produce this:
 
 <img src="files/letter-f-turned.svg" width="200" height="200">
 
@@ -97,21 +99,31 @@ You should observe that turning a picture twice rotates it 180 degrees, and turn
 
 ### Exercise 2 : flip
 
-Define a function _flip_, which flips a picture about the center vertical axis of its bounding box.
+Define a function `flip`, which flips a picture about the center vertical axis of its bounding box. 
+
+Applied to the letter F, it should produce this:
 
 <img src="files/letter-f-flipped.svg" width="200" height="200">
 
-```
-(a’, b’, c’) = (a + b, -b, c)
-```
+The solution is once again to transform the box before passing it to the picture to produce a rendering. 
 
-Note that flipping a picture twice (indeed any even number of times) produces the original picture.
+Here's how the flipped F looks with box and arrows:
+
+<img src="files/letter-f-flipped-arrows.svg" width="199" height="199">
+
+You should be able to work out the vector arithmetic on your own.
+
+Note that flipping a picture twice (indeed any even number of times) produces the original picture. 
+
+Try experimenting with combinations of flips and turns. 
 
 ### Exercise 3 : toss
 
-Define a function _toss_, which resembles tossing a picture light-heartedly into the air! More precisely, it should rotate the picture 45 degrees around top left corner of the bounding box, and also shrink the sides of the bounding box by a factor of √2.
+Define a function `toss`, which resembles tossing a picture light-heartedly into the air! More precisely, it should rotate the picture 45 degrees around top left corner of the bounding box, and also shrink the sides of the bounding box by a factor of √2.
 
 <img src="files/letter-f-tossed.svg" width="235" height="235">
+
+
 
 ```
 (a’, b’, c’) = (a + (b + c) / 2, (b + c) / 2, (c − b) / 2)
