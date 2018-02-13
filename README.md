@@ -16,7 +16,11 @@ Check out repo.
 
 You'll see that we're not starting from scratch.
 
+You can start the application by typing `elm-reactor` in your terminal. If you open a browser at `http://localhost:8000/Main.elm` you should see something that looks like this:
+
 <img src="files/letter-f.svg" width="200" height="200">
+
+Which looks like the letter F.
 
 ## Exercises
 
