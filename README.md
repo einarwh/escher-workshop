@@ -15,7 +15,7 @@ The focus in this workshop is on abstraction and composition. It happens to use 
 You should start by cloning this repo, like so: 
 
 ```
-git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+git clone https://github.com/einarwh/escher-workshop
 ````
 
 You should see that we're not starting from scratch. You get a number of `.elm` files containing Elm modules. Most of them we can and will ignore in this workshop. 
