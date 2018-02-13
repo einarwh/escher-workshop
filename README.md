@@ -42,7 +42,7 @@ You should see something like this:
 
 <img src="files/figure-george.svg" width="200" height="200">
 
-We replaced the letter F with a stickman called George.
+We replaced the letter F with a stickman called George. (George is not my invention, he comes from the SICP lecture on Henderson's paper, you can - and should! - watch it here.)
 
 At this point, you probably have questions! Here are some answers, that may or may not fit those questions. First, `letterF` and `george` are shapes, mere data. More interestingly, `createPicture` is a function that creates a picture out of a shape. And most interestingly, a picture is also a function (!) - from a bounding box to an SVG rendering. This makes a picture somewhat magical, in that it can produce a bunch of different renderings, based on the box you give it.
 
@@ -62,7 +62,7 @@ And that's about it for theory. Do you feel ready? You are ready. We should star
 
 ## Exercises
 
-We will start by defining a number of simple picture transformations; functions of type Picture -> Picture.
+We will start by defining a number of simple picture transformations; functions of type `Picture -> Picture`.
 
 ### Exercise 1 : turn
 
@@ -91,7 +91,7 @@ That's a lot of words for something quite simple. Summarized in terms of vector 
 (Of course, you'll need to substitute the vector addition 
 function `add` for `+` and so forth.)
 
-And finally, with boxes and arrows, it looks like this: 
+And finally, with box and arrows, it looks like this: 
 
 <img src="files/letter-f-turned-arrows.svg" width="199" height="199">
 
@@ -121,23 +121,27 @@ Try experimenting with combinations of flips and turns.
 
 ### Exercise 3 : toss
 
-Define a function `toss`, which resembles tossing a picture light-heartedly into the air! More precisely, it should rotate the picture 45 degrees around top left corner of the bounding box, and also shrink the sides of the bounding box by a factor of √2.
+Define a function `toss`, which resembles tossing a picture light-heartedly into the air! More precisely, it should rotate the picture 45 degrees around top left corner of the bounding box, and also shrink the sides of the bounding box by a factor of √2. 
+
+Here's a visualization which includes both the original and the transformed bounding box:
 
 <img src="files/letter-f-tossed.svg" width="235" height="235">
 
-
+You don't have to work out the vector arithmetic yourself this time:
 
 ```
 (a’, b’, c’) = (a + (b + c) / 2, (b + c) / 2, (c − b) / 2)
 ```
 
+Whee!
+
 ### Exercise 4 : above
 
 Now we'll start combining pictures to create more complex, composite pictures.
 
-Define a function _above_, which takes two pictures _p1_ and _p2_ as parameters. It should produce a new picture which fills the upper half of the bounding box with _p1_ and the lower half with _p2_.
+Define a function `above`, which takes two pictures `p1` and `p2` as parameters. It should produce a new picture which fills the upper half of the bounding box with `p1` and the lower half with `p2`.
 
-So calling `above f (flip f)` should yield the following:
+Calling `above f (flip f)` should yield the following:
 
 <img src="files/above-f-flip-f.svg" width="200" height="200">
 
