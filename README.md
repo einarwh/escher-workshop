@@ -12,15 +12,49 @@ The focus in this workshop is on abstraction and composition. It happens to use 
 
 ## Getting started
 
-Check out repo.
+You should start by cloning this repo, like so: 
 
-You'll see that we're not starting from scratch.
+```
+git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+````
+
+You should see that we're not starting from scratch. You get a number of `.elm` files containing Elm modules. Most of them we can and will ignore in this workshop. 
 
 You can start the application by typing `elm-reactor` in your terminal. If you open a browser at `http://localhost:8000/Main.elm` you should see something that looks like this:
 
 <img src="files/letter-f.svg" width="200" height="200">
 
-Which looks like the letter F.
+Which is an SVG rendering of the letter F.
+
+If you open `Main.elm` in your editor, you'll see that we import a bunch of stuff. 
+
+Try to change this line:
+
+```
+box |> createPicture fLetter
+```
+
+To this: 
+
+```
+box |> createPicture george
+```
+
+You should see something like this: 
+
+<img src="files/george.svg" width="200" height="200">
+
+We replaced the letter F with a stickman called George.
+
+At this point, you probably have questions! Here are some answers, that may or may not fit those questions. First, `letterF` and `george` are shapes, mere data defined in `Letter.elm` and `Figure.elm` respectively. More interestingly, `createPicture` is a function that creates a picture out of a shape. And most interestingly, a picture is also a function (!) - from a bounding box to an SVG rendering. This makes a picture somewhat magical, in that it can produce a bunch of different renderings, based on the box you give it.
+
+Try to mess with the bounding box passed to George and see what happens. He has no choice but to stretch and contract to fit the box! 
+
+Let's return to the rendering of the letter F, and try to understand what happens a little bit better. 
+
+<img src="files/letter-f-arrows.svg" width="199" height="199">
+
+If you open `Box.elm`, you'll see that a box is defined by three vectors: `a`, `b` and `c`. 
 
 ## Exercises
 
