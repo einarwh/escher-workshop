@@ -87,7 +87,13 @@ That's a lot of words for something quite simple. Summarized in terms of vector 
 (Of course, you'll need to substitute the vector addition 
 function `add` for `+` and so forth.)
 
-You should observe that turning a picture twice rotates it 180 degrees, and turning it four times produces the original picture.
+And finally, with boxes and arrows, it looks like this: 
+
+<img src="files/letter-f-turned-arrows.svg" width="199" height="199">
+
+Have you implemented `turn`? Make sure you remember to call it in `Main.elm`!
+
+You should observe that turning a picture twice rotates it 180 degrees, and turning it four times produces the original picture. And by observe I mean try it out to verify it.
 
 ### Exercise 2 : flip
 
