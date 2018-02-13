@@ -4,11 +4,11 @@ Welcome to the Escher-in-Elm Workshop!
 
 This workshop is based on the classic 1982 paper "Functional Geometry" by Peter Henderson. The paper shows the functional decomposition and reconstruction of Escher's woodcutting "Square Limit", a beautiful recursive tesselation of interleaving fish. In this workshop, we will follow in Henderson's footsteps as we create an SVG replica of it.
 
-This workshop uses Elm as the implementation language, but it is not an Elm tutorial. If you feel need a proper Elm tutorial before attempting this workshop, take a look at [Awesome Elm](https://github.com/isRuslan/awesome-elm) to find one that suits you.
+The workshop uses Elm as the implementation language, but it is _not_ an Elm tutorial. If you feel need a proper Elm tutorial before attempting this workshop, take a look at [Awesome Elm](https://github.com/isRuslan/awesome-elm) to find one that suits you.
 
 If all you need is a syntax cheat-sheet, you can take a look here.
 
-The focus in this workshop is on abstraction and composition. It happens to use Elm because we will be producing an SVG, and the browser is a nice runtime for that.
+The focus in this workshop is on abstraction and composition. We will see that Henderson's simple yet powerful picture combinators allow us to solve our task with ease and elegance. It happens to use Elm because we will be producing an SVG, and the browser is a nice runtime for that.
 
 ## Getting started
 
@@ -133,7 +133,7 @@ You don't have to work out the vector arithmetic yourself this time:
 (a’, b’, c’) = (a + (b + c) / 2, (b + c) / 2, (c − b) / 2)
 ```
 
-Whee!
+Whee! High up in the air!
 
 ### Exercise 4 : above
 
@@ -141,9 +141,9 @@ Now we'll start combining pictures to create more complex, composite pictures.
 
 Define a function `above`, which takes two pictures `p1` and `p2` as parameters. It should produce a new picture which fills the upper half of the bounding box with `p1` and the lower half with `p2`.
 
-Calling `above f (flip f)` should yield the following:
+Calling `above f (flip f)` should yield the following (with bounding boxes included):
 
-<img src="files/above-f-flip-f.svg" width="200" height="200">
+<img src="files/above-f-flip-f-arrows.svg" width="200" height="200">
 
 Define a more general function _aboveRatio_ that takes integers _n_ and _m_ as parameters, as well as _p1_ and _p2_ as above. The integers _n_ and _m_ are weights allocated to _p1_ and _p2_ respectively. 
 
