@@ -48,7 +48,7 @@ At this point, you probably have questions! Here are some answers, that may or m
 
 Try to mess with the bounding box passed to George and see what happens. He has no choice but to stretch and contract to fit the box! Poor ol' George! Here he is all thin and skewed and weird: 
 
-<img src="files/figure-george.svg" width="200" height="200">
+<img src="files/figure-george-skewed.svg" width="200" height="200">
 
 Let's return to the rendering of the letter F, and try to understand what happens a little bit better. Adding some visual aids for the bounding box should help.
 
