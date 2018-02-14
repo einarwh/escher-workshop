@@ -159,7 +159,7 @@ Define a function `besideRatio`, which is similar to `aboveRatio`. However, rath
 
 Calling `besideRatio 3 5 f (flip f)` should be interpreted as _allocate 3/8 of the original bounding box to the left picture and 5/8 to the right picture_, yielding the following:
 
-<img src="files/beside-f-flip-f.svg" width="200" height="200">
+<img src="files/besideRatio-f-flip-f.svg" width="200" height="200">
 
 Define `beside` in terms of `besideRatio`.
 
