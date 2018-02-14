@@ -12,8 +12,8 @@ main : Svg msg
 main = 
   let 
     box = { a = { x = 0.0, y = 0.0 }
-          , b = { x = 200.0, y = 0.0 }
-          , c = { x = 0.0, y = 200.0 } }
+          , b = { x = 90.0, y = 30.0 }
+          , c = { x = 60.0, y = 180.0 } }
     f = createPicture fLetter
     h = createPicture hLetter
     e = createPicture eLetter
@@ -36,5 +36,5 @@ main =
     fish = createPicture hendersonFishShapes
     g = createPicture george 
   in     
-    box |> above f (Picture.flip f) |> toSvg (255, 255)
+    box |> createPicture george |> toSvg (200, 200)
  

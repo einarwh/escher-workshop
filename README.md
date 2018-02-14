@@ -151,19 +151,29 @@ Calling `aboveRatio 3 1 f (flip f)` should be interpreted as _allocate 3/4 of th
 
 <img src="files/aboveRatio-f-flip-f.svg" width="200" height="200">
 
-Now implement _above_ in terms of _aboveRatio_.
+Now implement `above` in terms of `aboveRatio`.
 
 ### Exercise 5 : beside
 
-Define a function _besideRatio_, which is similar to _aboveRatio_. However, rather than placing _p1_ on top of _p2_, it should place _p1_ to the left of _p2_. 
+Define a function `besideRatio`, which is similar to `aboveRatio`. However, rather than placing `p1` on top of `p2`, it should place `p1` to the left of `p2`. 
 
-Define _beside_ in terms of _besideRatio_.
+Calling `besideRatio 3 5 f (flip f)` should be interpreted as _allocate 3/8 of the original bounding box to the left picture and 5/8 to the right picture_, yielding the following:
+
+<img src="files/beside-f-flip-f-arrows-3-5.svg" width="200" height="200">
+
+Define `beside` in terms of `besideRatio`.
+
+What happens if you render `beside f (beside (flip f) (turn f))`? How would go about allocating an equal amount of space for three pictures?
 
 ### Exercise 6 : quartet
 
-Using _above_ and _beside_, define a function _quartet_ which takes four pictures _nw_, _ne_, _sw_ and _se_ as inputs and organizes them in a 2x2 grid. The names of the pictures hint at where in the grid they should be put.
+You might feel at this point that we're progressing slowly, and that "Square Limit" must be miles off. We still haven't seen a single fish. Despair not! We have come further along than you might think. Indeed, we are ready to leave the low-level world of vectors completely behind! Instead, we'll concentrate on using our current simple picture combinators to create more powerful ones. 
 
-One of the most interesting and powerful properties of the combinators in Henderson's paper is that they are _closed under the means of combination_. That means that there is no difference between a "simple" picture (like F and George) and a "composite" picture. They're all just pictures. There are no arbitrary restrictions on what you can do with them. You're free to use a composite picture as a building block to create a more complex composite picture. To get a feel for this, try to create this picture, using the combinators we have defined so far:
+Using `above` and `beside`, define a function `quartet` which takes four pictures `nw`, `ne`, `sw`and `se` as inputs and organizes them in a 2x2 grid. The names of the pictures hint at where in the grid they should be put.
+
+See if you can recreate this picture:
+
+One of the most interesting and powerful properties of the combinators in Henderson's paper is that they are _closed under the means of combination_. That means that there is no difference between a "simple" picture (like F and George) and a "composite" picture. They're all just pictures! There are no arbitrary restrictions on what you can do with them. You're free to use a composite picture as a building block to create a more complex composite picture. To get a feel for this, try to create this picture, using the combinators we have defined so far:
 
 ### Exercise 7 : nonet
 
