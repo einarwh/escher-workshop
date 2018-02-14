@@ -187,13 +187,13 @@ Define a function `nonet` which is like `quartet`, except it creates a picture b
 
 Test your function by creating the following image:
 
-<img src="files/nonet-name.svg" width="200" height="200">
+<img src="files/name-nonet.svg" width="200" height="200">
 
 You'll find the letters you need defined in `Letter.elm`.
 
 Again, a nonet is just a picture, which can be used to create more complex pictures (including nonets). See if you can create the following picture:
 
-<img src="files/nonet-name-zoom.svg" width="200" height="200">
+<img src="files/name-nonet-zoom.svg" width="200" height="200">
 
 ### Exercise 8 : over
 
