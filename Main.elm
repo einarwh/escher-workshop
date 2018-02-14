@@ -12,8 +12,8 @@ main : Svg msg
 main = 
   let 
     box = { a = { x = 0.0, y = 0.0 }
-          , b = { x = 90.0, y = 30.0 }
-          , c = { x = 60.0, y = 180.0 } }
+          , b = { x = 200.0, y = 0.0 }
+          , c = { x = 0.0, y = 200.0 } }
     f = createPicture fLetter
     h = createPicture hLetter
     e = createPicture eLetter
@@ -35,6 +35,11 @@ main =
     zoom p = nonet nw nm ne mw p me sw sm se 
     fish = createPicture hendersonFishShapes
     g = createPicture george 
+    gnw = g
+    gne = g |> Picture.turns 2 |> Picture.flip
+    gsw = g |> Picture.turns 2
+    gse = g |> Picture.flip
   in     
-    box |> createPicture george |> toSvg (200, 200)
+    box |> quartet gnw gne gsw gse 
+        |> toSvg (200, 200)
  

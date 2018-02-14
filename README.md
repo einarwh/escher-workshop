@@ -42,7 +42,7 @@ You should see something like this:
 
 <img src="files/figure-george.svg" width="200" height="200">
 
-We replaced the letter F with a stickman called George. (George is not my invention, he comes from the SICP lecture on Henderson's paper, you can - and should! - watch it here.)
+We replaced the letter F with a stickman called George. (George is not my invention, he comes from the SICP lecture on Henderson's paper, you can - and should! - watch it [here](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/3a-henderson-escher-example/).)
 
 At this point, you probably have questions! Here are some answers, that may or may not fit those questions. First, `letterF` and `george` are shapes, mere data. More interestingly, `createPicture` is a function that creates a picture out of a shape. And most interestingly, a picture is also a function (!) - from a bounding box to an SVG rendering. This makes a picture somewhat magical, in that it can produce a bunch of different renderings, based on the box you give it.
 
@@ -172,6 +172,8 @@ You might feel at this point that we're progressing slowly, and that "Square Lim
 Using `above` and `beside`, define a function `quartet` which takes four pictures `nw`, `ne`, `sw`and `se` as inputs and organizes them in a 2x2 grid. The names of the pictures hint at where in the grid they should be put.
 
 See if you can recreate this picture:
+
+
 
 One of the most interesting and powerful properties of the combinators in Henderson's paper is that they are _closed under the means of combination_. That means that there is no difference between a "simple" picture (like F and George) and a "composite" picture. They're all just pictures! There are no arbitrary restrictions on what you can do with them. You're free to use a composite picture as a building block to create a more complex composite picture. To get a feel for this, try to create this picture, using the combinators we have defined so far:
 
