@@ -4,6 +4,7 @@ import Letter exposing (..)
 import Figure exposing (george)
 import Fishy exposing (..)
 import Fitting exposing (..)
+import Box exposing (..)
 import Picture exposing (..)
 import Rendering exposing (..)
 import Svg exposing (Svg)
@@ -42,7 +43,8 @@ main =
     q = quartet gnw gne gsw gse
     qq = quartet q blank blank q
     pattern p = quartet qq qq qq qq
+    (b1, b2) = splitHorizontally 0.375 box
   in     
-    box |> name
+    box |> besideRatio 3 5 f (Picture.flip f)
         |> toSvg (200, 200)
  
