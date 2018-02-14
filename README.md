@@ -173,7 +173,7 @@ Using `above` and `beside`, define a function `quartet` which takes four picture
 
 See if you can recreate this picture:
 
-
+<img src="files/quartet-george.svg" width="200" height="200">
 
 One of the most interesting and powerful properties of the combinators in Henderson's paper is that they are _closed under the means of combination_. That means that there is no difference between a "simple" picture (like F and George) and a "composite" picture. They're all just pictures! There are no arbitrary restrictions on what you can do with them. You're free to use a composite picture as a building block to create a more complex composite picture. To get a feel for this, try to create this picture, using the combinators we have defined so far:
 
