@@ -43,6 +43,6 @@ main =
     qq = quartet q blank blank q
     pattern p = quartet qq qq qq qq
   in     
-    box |> (qq |> pattern |> pattern)
+    box |> name
         |> toSvg (200, 200)
  

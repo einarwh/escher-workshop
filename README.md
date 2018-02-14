@@ -183,11 +183,17 @@ One of the most interesting and powerful properties of the combinators in Hender
 
 ### Exercise 7 : nonet
 
-Define a function _nonet_ which is like _quartet_, except it creates a picture by organizing nine input pictures in a 3x3 grid. The _aboveRatio_ and _besideRatio_ functions should be helpful to accomplish this.
+Define a function `nonet` which is like `quartet`, except it creates a picture by organizing nine input pictures in a 3x3 grid. The `aboveRatio` and `besideRatio` functions should be helpful to accomplish this.
 
-Try to create the following image:
+Test your function by creating the following image:
+
+<img src="files/nonet-name.svg" width="200" height="200">
+
+You'll find the letters you need defined in `Letter.elm`.
 
 Again, a nonet is just a picture, which can be used to create more complex pictures (including nonets). See if you can create the following picture:
+
+<img src="files/nonet-name-zoom.svg" width="200" height="200">
 
 ### Exercise 8 : over
 
