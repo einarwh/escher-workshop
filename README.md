@@ -141,11 +141,11 @@ Now we'll start combining pictures to create more complex, composite pictures.
 
 Define a function `above`, which takes two pictures `p1` and `p2` as parameters. It should produce a new picture which fills the upper half of the bounding box with `p1` and the lower half with `p2`.
 
-Calling `above f (flip f)` should yield the following (with bounding boxes included):
+Calling `above f (flip f)` should yield the following (with bounding boxes outlined for clarity):
 
 <img src="files/above-f-flip-f-arrows.svg" width="200" height="200">
 
-Define a more general function _aboveRatio_ that takes integers _n_ and _m_ as parameters, as well as _p1_ and _p2_ as above. The integers _n_ and _m_ are weights allocated to _p1_ and _p2_ respectively. 
+Define a more general function _aboveRatio_ that takes integers `n` and `m` as parameters, as well as `p1` and `p2` as above. The integers `n` and `m` are weights allocated to `p1` and `p2` respectively. 
 
 Calling `aboveRatio 3 1 f (flip f)` should be interpreted as _allocate 3/4 of the original bounding box to the top picture and 1/4 to the bottom picture_, yielding the following:
 
