@@ -39,7 +39,10 @@ main =
     gne = g |> Picture.turns 2 |> Picture.flip
     gsw = g |> Picture.turns 2
     gse = g |> Picture.flip
+    q = quartet gnw gne gsw gse
+    qq = quartet q blank blank q
+    pattern p = quartet qq qq qq qq
   in     
-    box |> quartet gnw gne gsw gse 
+    box |> (qq |> pattern |> pattern)
         |> toSvg (200, 200)
  
