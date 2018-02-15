@@ -229,7 +229,21 @@ Using `toss`, `flip`, `turn` and `over`, define a function `ttile` that takes a 
 
 <img src="files/ttile-fish.svg" width="352" height="300">
 
+(The big fish is easy, right? It's just the fish as-is! And the fish on top, with the bounding box that resembles the flap of an envelope, should make you think of tossing things into the air. And the final fish is very much similar to the fish on top.)
+
+You can imagine Escher spending some time coming up with the design for this fish.
+
 ### Exercise 10 : u-tile
+
+Next up is the _u tile_. It should offer no major challenges now that you've already managed the _t tile_.
+
+The function `utile` should accept a single picture as parameter (the fish again), and once again, you should the functions `toss`, `flip`, `turn` and `over` to create the picture. 
+
+Calling `utile fish` should produce this picture: 
+
+<img src="files/utile-fish.svg" width="402" height="402">
+
+You'll need to overlay four fish on top of each other, but you'll notice that two of them are exactly the same as in the _t tile_.
 
 ### Exercise 11 : side
 
