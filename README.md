@@ -251,7 +251,7 @@ Now we're really getting somewhere! Just two more exercises, and then we'll tack
 
 I won't lie though - those two exercises are probably the most difficult ones in this workshop. They both require us to create _recursive_ picture functions.
 
-The first exercise is to create a function `side` that takes an integer `n` and a picture `p` (the fish) as parameters. The integer designates the depth of recursion. 
+The one we'll tackle first is to create a function `side` that takes an integer `n` and a picture `p` (the fish) as parameters to produce a recursive picture. The integer designates the depth of recursion. 
 
 To understand the task better, let's look at the degenerate case where `n = 1` and the recursion stops. It should look like this:
 
@@ -263,7 +263,14 @@ The recursion should happen in the "northern" pictures. So for `n = 2`, you'd ha
 
 <img src="files/side-2.svg" width="226" height="232">
 
+And so on and so forth.
+
 ### Exercise 12 : corner
+
+Next, you should write the second recursive function, called `corner`. Just like side, it takes an integer `n` and a picture `p` (the fish) as parameters to produce a recursive picture. 
+
+ that will be used as sides in "Square Limit". The integer designates the depth of recursion. 
+
 
 ### Exercise 13 : square-limit
 
