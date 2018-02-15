@@ -283,3 +283,14 @@ You can see that there are actually two distinct instances of recursion. The "no
 
 ### Exercise 13 : square-limit
 
+You've made it all the way to the end! Congratulations! The last exercise is actually very simple. All the hard work is done.
+
+Write a function `squareLimit` that takes an integer `n` (the depth of recursion) and a picture (the fish) and produces a `nonet` consisting of four corners, four sides, and a single _u-tile_ in the middle. (You'll need to turn those corners and sides as appropriate, of course.)
+
+For `n = 3`, `squareLimit` should look like this:
+
+<img src="files/square-limit-3.svg" width="250" height="250">
+
+And of course, the main lesson of this workshop is that `squareLimit` is still just a picture. There is no reason it can't be turned, flipped, tossed or combined into even more complex pictures! 
+
+
