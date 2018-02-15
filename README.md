@@ -289,7 +289,7 @@ Write a function `squareLimit` that takes an integer `n` (the depth of recursion
 
 For `n = 3`, `squareLimit` should look like this:
 
-<img src="files/square-limit-3.svg" width="250" height="250">
+<img src="files/square-limit-3.svg" width="300" height="300">
 
 And of course, the main lesson of this workshop is that `squareLimit` is still just a picture. There is no reason it can't be turned, flipped, tossed or combined into even more complex pictures! 
 
