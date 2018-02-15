@@ -199,13 +199,13 @@ Abstractions that compose are a wonderful thing.
 
 ### Pause for fish
 
-At this point, let's introduce our first fish. The shape of the fish is defined in `Fishy.elm`. You turn the shape into a proper fish picture by calling `createPicture hendersonFish`. You may have noticed that in `Main.elm`, the resulting picture is bound to the name `fish`.
+At this point, let's introduce our fish. The shape of the fish is defined in `Fishy.elm`. You turn the shape into a proper fish picture by calling `createPicture hendersonFish`. You may have noticed that in `Main.elm`, the resulting picture is bound to the name `fish`.
 
 If you pass it a suitable bounding box, the fish should render like this:
 
-<img src="files/fish.svg" width="200" height="200">
+<img src="files/fish.svg" width="302" height="200">
 
-You might find it weird that parts of the fish are rendered _outside_ the bounding box - I mean, is that legal? It's not really bounded at all! But yes, it is quite legal. The picture will render its shape adjusted and fitted to the box you give it, but not necessarily _inside_ it. 
+You might find it weird that parts of the fish are rendered _outside_ the bounding box - I mean, is that even legal? It's not really bounded at all! But yes, it is quite legal. The picture will render its shape adjusted and fitted to the box you give it, but not necessarily _inside_ it. 
 
 Apart from that, the fish looks rather ordinary at first glance. But it does has some interesting properties that will become apparent in the next few exercises.
 
@@ -217,7 +217,7 @@ If you call `over fish fish`, the result will be very boring: it will just show 
 
 But if you call `over fish (turn (turn fish))`, the result will be much more interesting. 
 
-<img src="files/over-fish.svg" width="200" height="200">
+<img src="files/over-fish.svg" width="302" height="200">
 
 When solving this exercise, recall that a `Picture` is nothing more and nothing less than a function from a `Box` to a `Rendering`, and that a `Rendering` is a list of stuff. This should give you a clue as to how you create a single, composite rendering out of two simpler renderings. (You know how to combine lists, right?)
 
