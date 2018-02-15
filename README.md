@@ -259,6 +259,10 @@ To understand the task better, let's look at the degenerate case where `n = 1` a
 
 It's not so complex. It is a `quartet` where the pictures to the "north-west" (top left) and "north-east" are blank, whereas the "south-west" and "south-east" are t-tiles in different states of turning. 
 
+The recursion should happen in the "northern" pictures. So for `n = 2`, you'd have instances of `side 1` where you previously had blanks. This yields the following picture: 
+
+<img src="files/side-2.svg" width="226" height="232">
+
 ### Exercise 12 : corner
 
 ### Exercise 13 : square-limit
