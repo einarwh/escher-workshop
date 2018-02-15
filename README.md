@@ -46,7 +46,7 @@ We replaced the letter F with a stickman called George. (George is not my invent
 
 At this point, you probably have questions! Here are some answers, that may or may not fit those questions. First, `letterF` and `george` are shapes, mere data. More interestingly, `createPicture` is a function that creates a picture out of a shape. And most interestingly, a picture is also a function (!) - from a bounding box to an SVG rendering. This makes a picture somewhat magical, in that it can produce a bunch of different renderings, based on the box you give it.
 
-Try to mess with the bounding box passed to George and see what happens. He has no choice but to stretch and contract to fit the box! Poor ol' George! Here he is all thin and skewed and weird: 
+Try to mess around with the bounding box passed to George and see what happens. He has no choice but to stretch and contract to fit the box! Poor ol' George! Here he is all thin and skewed and weird: 
 
 <img src="files/figure-george-skewed.svg" width="200" height="200">
 
@@ -195,9 +195,35 @@ Again, a nonet is just a picture, which can be used to create more complex pictu
 
 <img src="files/name-nonet-zoom.svg" width="200" height="200">
 
+Abstractions that compose are a wonderful thing.
+
+### Pause for fish
+
+At this point, let's introduce our first fish. The shape of the fish is defined in `Fishy.elm`. You turn the shape into a proper fish picture by calling `createPicture hendersonFish`. You may have noticed that in `Main.elm`, the resulting picture is bound to the name `fish`.
+
+If you pass it a suitable bounding box, the fish should render like this:
+
+<img src="files/fish.svg" width="200" height="200">
+
+You might find it weird that parts of the fish are rendered _outside_ the bounding box - I mean, is that legal? It's not really bounded at all! But yes, it is quite legal. The picture will render its shape adjusted and fitted to the box you give it, but not necessarily _inside_ it. 
+
+Apart from that, the fish looks rather ordinary at first glance. But it does has some interesting properties that will become apparent in the next few exercises.
+
 ### Exercise 8 : over
 
+Define a function `over` that combines two pictures in such a way that it will render the two pictures on top of each other, in the same box. 
+
+If you call `over fish fish`, the result will be very boring: it will just show the fish. Right? Because the two fishes are rendered exactly on top of each other.  
+
+But if you call `over fish (turn (turn fish))`, the result will be much more interesting. 
+
+<img src="files/over-fish.svg" width="200" height="200">
+
+When solving this exercise, recall that a `Picture` is nothing more and nothing less than a function from a `Box` to a `Rendering`, and that a `Rendering` is a list of stuff. This should give you a clue as to how you create a single, composite rendering out of two simpler renderings. (You know how to combine lists, right?)
+
 ### Exercise 9 : t-tile
+
+
 
 ### Exercise 10 : u-tile
 
