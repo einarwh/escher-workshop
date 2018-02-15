@@ -223,7 +223,11 @@ When solving this exercise, recall that a `Picture` is nothing more and nothing 
 
 ### Exercise 9 : t-tile
 
+The next exercise is a little more difficult, I'm afraid, but it also yields a more interesting picture! That picture is what Henderson calls the _t tile_, and is a key ingredient when composing "Square Limit". 
 
+Using `toss`, `flip`, `turn` and `over`, define a function `ttile` that takes a single picture as a parameter (it's going to be our fish). It should overlay three variations of that fish on top of each other, yielding the following picture: 
+
+<img src="files/ttile-fish.svg" width="352" height="300">
 
 ### Exercise 10 : u-tile
 
