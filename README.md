@@ -277,7 +277,7 @@ It's another `quartet`, and a very simple one. The "south-east" picture is a _u-
 
 Let's take a look at what `corner` should produce for `n = 2`:
 
-<img src="files/corner-1.svg" width="226" height="232">
+<img src="files/corner-2.svg" width="226" height="232">
 
 You can see that there are actually two distinct instances of recursion. The "north-west" picture should contain `corner 1`. But what about the "north-east" and "south-west" pictures? Do you recognize `side 1`?
 
