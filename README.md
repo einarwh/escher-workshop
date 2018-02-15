@@ -247,6 +247,18 @@ You'll need to overlay four fish on top of each other, but you'll notice that tw
 
 ### Exercise 11 : side
 
+Now we're really getting somewhere! Just two more exercises, and then we'll tackle the "Square Limit" itself!
+
+I won't lie though - those two exercises are probably the most difficult ones in this workshop. They both require us to create _recursive_ picture functions.
+
+The first exercise is to create a function `side` that takes an integer `n` and a picture `p` (the fish) as parameters. The integer designates the depth of recursion. 
+
+To understand the task better, let's look at the degenerate case where `n = 1` and the recursion stops. It should look like this:
+
+<img src="files/side-1.svg" width="226" height="232">
+
+It's not so complex. It is a `quartet` where the pictures to the "north-west" (top left) and "north-east" are blank, whereas the "south-west" and "south-east" are t-tiles in different states of turning. 
+
 ### Exercise 12 : corner
 
 ### Exercise 13 : square-limit
