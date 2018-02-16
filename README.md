@@ -2,11 +2,9 @@
 
 Welcome to the Escher-in-Elm Workshop!
 
-This workshop is based on the classic 1982 paper "Functional Geometry" by Peter Henderson. The paper shows the functional decomposition and reconstruction of Escher's woodcutting "Square Limit", a beautiful recursive tesselation of interleaving fish. In this workshop, we will follow in Henderson's footsteps as we create an SVG replica of it.
+This workshop is based on [the revised 2002 edition](https://eprints.soton.ac.uk/257577/1/funcgeo2.pdf) of the classic 1982 paper "Functional Geometry" by Peter Henderson. The paper shows the functional decomposition and reconstruction of Escher's woodcutting "Square Limit", a beautiful recursive tesselation of interleaving fish. 
 
-The focus in this workshop is on abstraction and composition. It uses Elm as the implementation language, but it is _not_ an Elm tutorial. If you came here looking for an proper Elm tutorial, or feel you need a tutorial before attempting this workshop, take a look at [Awesome Elm](https://github.com/isRuslan/awesome-elm) to find one that suits you.
-
-If all you need is a syntax cheat-sheet, you can take a look [here](Sheet.elm).
+The focus in this workshop is on abstraction and composition using functions. It uses Elm as the implementation language, but it is _not_ an Elm tutorial. If you came here looking for a proper Elm tutorial, or feel you need such a tutorial before attempting this workshop, take a look at [Awesome Elm](https://github.com/isRuslan/awesome-elm) to find one that suits you. If all you need is a syntax cheat-sheet to consult, you can take a look [here](Sheet.elm).
 
 This workshop is essentially a guided tour to Henderson's paper. You will implement a collection of simple yet powerful picture combinators that will ultimately enable you to recreate Henderson's replica of "Square Limit". You will do so in Elm because the replica will be an SVG, and the browser is a nice runtime for that.
 
@@ -18,7 +16,7 @@ You should start by cloning this repo, like so:
 git clone https://github.com/einarwh/escher-workshop
 ````
 
-You'll see that we're not starting from scratch. You get a number of `.elm` files containing Elm modules. Most of them we can and will ignore in this workshop. But some of them we'll become familiar with. 
+You'll see that you're not starting from scratch. You get a number of `.elm` files containing Elm modules. Most of them you can safely ignore in this workshop. But some of them you'll become familiar with. 
 
 First though, you can start the application by typing `elm-reactor` in your terminal. If you open a browser at `http://localhost:8000/Main.elm` you should see something that looks like this:
 
@@ -42,7 +40,7 @@ You should see something like this:
 
 <img src="files/figure-george.svg" width="200" height="200">
 
-We replaced the letter F with a stickman called George. (George is not my invention, he comes from the [SICP lecture](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/3a-henderson-escher-example/) on Henderson's paper.)
+The letter F has been replaced with a stickman called George. (George is not my invention, he comes from the [SICP lecture](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/3a-henderson-escher-example/) on Henderson's paper.)
 
 At this point, you probably have questions! Here are some answers, that may or may not fit those questions. First, `letterF` and `george` are shapes, mere data. More interestingly, `createPicture` is a function that creates a picture out of a shape. And most interestingly, a picture is also a function (!) - from a bounding box to an SVG rendering. This makes a picture somewhat magical, in that it can produce a bunch of different renderings, based on the box you give it.
 
