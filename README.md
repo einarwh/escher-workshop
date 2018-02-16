@@ -169,7 +169,7 @@ What happens if you render `beside f (beside (flip f) (turn f))`? How would go a
 
 ### Exercise 6 : quartet
 
-You might feel at this point that we're progressing slowly, and that "Square Limit" must be miles off. We still haven't seen a single fish. Despair not! We have come further along than you might think. Indeed, we are ready to leave the low-level world of vectors completely behind! Instead, we'll concentrate on using our current simple picture combinators to create more powerful ones. 
+You might feel at this point that you're progressing slowly, and that "Square Limit" must be miles off. You still haven't seen a single fish. Despair not! You have come further along than you might think. Indeed, you are already ready to leave the low-level world of vectors completely behind! From now on, you'll concentrate on using the simple picture combinators you've written to create more powerful ones. 
 
 Using `above` and `beside`, define a function `quartet` which takes four pictures `nw`, `ne`, `sw`and `se` as inputs and organizes them in a 2x2 grid. The names of the pictures hint at where in the grid they should be put.
 
@@ -177,7 +177,7 @@ See if you can recreate this picture:
 
 <img src="files/quartet-george.svg" width="200" height="200">
 
-One of the most interesting and powerful properties of the combinators in Henderson's paper is that they are _closed under the means of combination_. That means that there is no difference between a "simple" picture (like F and George) and a "composite" picture like the one you just created. They're all just pictures! There are no arbitrary restrictions on what you can do with them. You're free to use a composite picture as a building block to create a more complex composite picture. To get a feel for this, try to create this picture, using the combinators we have defined so far:
+One of the most interesting and powerful properties of the combinators in Henderson's paper is that they are _closed under the means of combination_. That means that there is no difference between a "simple" picture (like F and George) and a "composite" picture like the one you just created. They're all just pictures! There are no arbitrary restrictions on what you can do with them. You're free to use a composite picture as a building block to create a more complex composite picture. To get a feel for this, try to create this picture, using the combinators defined so far:
 
 <img src="files/quartet-george-pattern.svg" width="200" height="200">
 
@@ -201,7 +201,7 @@ Abstractions that compose are a wonderful thing.
 
 ### Pause for fish
 
-At this point, let's introduce our fish. The shape of the fish is defined in `Fishy.elm`. You turn the shape into a proper fish picture by calling `createPicture hendersonFish`. You may have noticed that in `Main.elm`, the resulting picture is bound to the name `fish`.
+At this point, let's introduce Escher's fish! The shape of the fish is defined in `Fishy.elm`. You can turn the shape into a proper fish picture by calling `createPicture fishShapes`. You may have noticed that in `Main.elm`, the resulting picture is bound to the name `fish`.
 
 If you pass it a suitable bounding box, the fish should render like this:
 
@@ -209,7 +209,7 @@ If you pass it a suitable bounding box, the fish should render like this:
 
 You might find it weird that parts of the fish are rendered _outside_ the bounding box - I mean, is that even legal? It's not really bounded at all! But yes, it is quite legal. The picture will render its shape adjusted and fitted to the box you give it, but not necessarily _inside_ it. 
 
-Apart from that, the fish looks rather ordinary at first glance. But it does have some interesting properties that will become apparent in the next few exercises.
+Apart from that, the fish looks rather ordinary at first glance. But it does have some interesting properties that will become apparent during the next few exercises.
 
 ### Exercise 8 : over
 
@@ -217,11 +217,11 @@ Define a function `over` that combines two pictures in such a way that it will r
 
 If you call `over fish fish`, the result will be very boring: it will just show the fish. Right? Because the two fishes are rendered exactly on top of each other.  
 
-But if you call `over fish (turn (turn fish))`, the result will be much more interesting. 
+But if you call `over fish (turn (turn fish))`, the result is much more interesting. 
 
 <img src="files/over-fish.svg" width="302" height="200">
 
-It might be helpful to think of `over` as a primitive version of `above`.
+It might be helpful to think of `over` as a primitive version of `above` when solving this exercise.
 
 (Bonus exercise: If you like, you can generalize `over` to take a list of pictures and render all of them on top of each other.)
 
@@ -229,7 +229,7 @@ It might be helpful to think of `over` as a primitive version of `above`.
 
 The next exercise is a little more difficult, I'm afraid, but it also yields a more interesting picture! That picture is what Henderson calls the _t-tile_, and is a key ingredient when composing "Square Limit". 
 
-Using `toss`, `flip`, `turn` and `over`, define a function `ttile` that takes a single picture as a parameter (it's going to be our fish). It should overlay three variations of that fish on top of each other, yielding the following picture: 
+Using `toss`, `flip`, `turn` and `over`, define a function `ttile` that takes a single picture as a parameter (it's going to be the fish). It should overlay three variations of that fish on top of each other, yielding the following picture: 
 
 <img src="files/ttile-fish.svg" width="352" height="300">
 
@@ -295,6 +295,8 @@ For `n = 3`, `squareLimit` should look like this:
 
 <img src="files/square-limit-3.svg" width="300" height="300">
 
-And of course, the main lesson of this workshop is that `squareLimit` is still just a picture. There is no reason it can't be turned, flipped, tossed or combined into even more complex pictures! 
+I'd like to stress that the main lesson of this workshop is that `squareLimit` is still just a picture. There is no reason it can't be turned, flipped, tossed or combined into even more complex pictures! 
+
+And just for fun, you might want to explore what happens if you pass something else than the fish to `squareLimit`, like George or the letter H - or what about `squareLimit` itself? (Beware that at some point your browser will succumb under the weight of an SVG that is very large indeed.)
 
 
