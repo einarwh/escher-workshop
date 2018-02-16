@@ -4,7 +4,7 @@ Welcome to the Escher-in-Elm Workshop!
 
 This workshop is based on [the revised 2002 edition](https://eprints.soton.ac.uk/257577/1/funcgeo2.pdf) of the classic 1982 paper "Functional Geometry" by Peter Henderson. The paper shows the functional decomposition and reconstruction of Escher's woodcutting "Square Limit", a beautiful recursive tesselation of interleaving fish. 
 
-The focus in this workshop is on abstraction and composition using functions. It uses Elm as the implementation language, but it is _not_ an Elm tutorial. If you came here looking for a proper Elm tutorial, or feel you need such a tutorial before attempting this workshop, take a look at [Awesome Elm](https://github.com/isRuslan/awesome-elm) to find one that suits you. If all you need is a syntax cheat-sheet to consult, you can take a look [here](Sheet.elm).
+The focus in this workshop is on abstraction and composition using functions. It uses Elm as the implementation language, but it is _not_ an Elm tutorial. If you came here looking for a proper Elm tutorial, or feel you need such a tutorial before attempting this workshop, take a look at [Awesome Elm](https://github.com/isRuslan/awesome-elm) to find one that suits you. (If all you need is a syntax cheat-sheet to consult, you can take a look [here](Sheet.elm)).
 
 This workshop is essentially a guided tour to Henderson's paper. You will implement a collection of simple yet powerful picture combinators that will ultimately enable you to recreate Henderson's replica of "Square Limit". You will do so in Elm because the replica will be an SVG, and the browser is a nice runtime for that.
 
@@ -16,7 +16,7 @@ You should start by cloning this repo, like so:
 git clone https://github.com/einarwh/escher-workshop
 ````
 
-You'll see that you're not starting from scratch. You get a number of `.elm` files containing Elm modules. Most of them you can safely ignore in this workshop. But some of them you'll become familiar with. 
+You're not starting from scratch, the repo contains a number of `.elm` files containing Elm modules. Most of them you can safely ignore in this workshop. But some of them you'll become familiar with. 
 
 First though, you can start the application by typing `elm-reactor` in your terminal. If you open a browser at `http://localhost:8000/Main.elm` you should see something that looks like this:
 
@@ -52,19 +52,19 @@ Let's return to the rendering of the letter F, and try to understand what happen
 
 <img src="files/letter-f-arrows.svg" width="199" height="199">
 
-If you open `Box.elm`, you'll see that a box is defined by three vectors: `a`, `b` and `c`. The red arrow is the `a` vector, which points from the origin (0, 0) to the bottom left corner of the box. The orange arrow is the `b` vector, which points from the bottom left corner to the bottom right corner, and spans out the box horizontally. The purple arrow points from the bottom left corner to the top left corner, and spans it out vertically. (What about the top right corner? It is implicitly defined by vectors `b` and `c` - you can get there from the bottom left corner if you follow `b` and then `c` or vice versa.)
+Open `Box.elm` to see that a box is defined by three vectors: `a`, `b` and `c`. The red arrow is the `a` vector, which points from the origin (0, 0) to the bottom left corner of the box. The orange arrow is the `b` vector, which points from the bottom left corner to the bottom right corner, and spans out the box horizontally. The purple arrow points from the bottom left corner to the top left corner, and spans it out vertically. (What about the top right corner? It is implicitly defined by vectors `b` and `c` - you can get there from the bottom left corner if you follow `b` and then `c` or vice versa.)
 
-Speaking of vectors: you might want to take a look at `Vector.elm` as well. You'll see that our vectors have two dimensions, `x` and `y`. We can add vectors together (by adding up the `x` and `y` dimensions separately), negate a vector (effectively have it pointing the other way) and subtract a vector from another. We can also scale a vector by some factor; a factor of 2 doubles it, a factor of 0.5 makes it half as long. And finally we can calculate the vector's length or magnitude. 
+Speaking of vectors: you might want to take a look at `Vector.elm` as well. Our vectors have two dimensions, `x` and `y`. You can add vectors together (by adding up the `x` and `y` dimensions separately), negate a vector (effectively have it pointing the other way) and subtract a vector from another. You can also scale a vector by some factor; a factor of 2 doubles it, a factor of 0.5 makes it half as long. And finally you can calculate the vector's length or magnitude. 
 
-And that's about it for theory. Do you feel ready? You are ready. We should start doing some exercises!
+And that's about it for theory. Do you feel ready? You are ready. It's time to start doing some exercises!
 
 ## Exercises
 
-We will start by defining a number of simple picture transformations; functions of type `Picture -> Picture`.
+You will start by defining a number of simple picture transformations; functions of type `Picture -> Picture`.
 
 ### Exercise 1 : turn
 
-Your task is to define a function `turn`, which rotates a picture 90 degrees counter-clockwise around the center of its bounding box. 
+Your first task is to define a function `turn`, which rotates a picture 90 degrees counter-clockwise around the center of its bounding box. 
 
 Applied to the letter F, it should produce this:
 
@@ -77,25 +77,27 @@ turn : Picture -> Picture
 turn p = p 
 ```
 
-The key to solving this task is to exploit the magical self-fitting nature of the picture. We know that when the box changes, the rendering changes also. So to turn the picture, all we need to do is turn the box - the picture has no choice but to follow along! It's poor ol' George all over again. So you should open `Box.elm` and define a function `turnBox` there that handles the box-turning, and then have your `turn` function call `turnBox`.
+The key to solving this task is to exploit the magical self-fitting nature of the picture. We know that when the box changes, the rendering changes also. So to turn the picture, all you need to do is turn the box - the picture has no choice but to follow along! It's poor ol' George all over again. So you should open `Box.elm` and define a function `turnBox` there that handles the box-turning, and then have your `turn` function call `turnBox`.
 
-But how do you turn the box? Well, you'll want the new `a` vector to point to the bottom right corner of the original box. You can create that vector by adding the original `a` vector and the original `b` vector together. The new `b` vector needs to point straight up, just like the original `c` vector. And finally, the new `c` vector should point to the left, in the exact opposite direction as the original `b` vector. 
+But how do you turn the box? Well, first off, you don't really turn the box. You create _another_ box that is turned when compared to the original. You'll want the `a` vector of the new box to point to the bottom right corner of the original box. (You can create that vector by adding the original `a` vector and the original `b` vector together.) The `b` vector needs to point straight up, just like the original `c` vector. And finally, the `c` vector should point to the left, in the exact opposite direction as the original `b` vector. 
 
-That's a lot of words for something quite simple. Summarized in terms of vector arithmetic, it looks like this:
+That's a lot of words for something quite simple. Summarized in terms of vector arithmetic, we have this:
 ```
 (a’, b’, c’) = (a + b, c, -b)
 ```
 
 (Of course, you'll need to substitute the vector addition 
-function `add` for `+` and so forth.)
+function `add` for `+` and so forth in your Elm code.)
 
-And finally, with box and arrows, it looks like this: 
+And finally, with vector arrows and an outlined bounding box, it looks like this: 
 
 <img src="files/letter-f-turned-arrows.svg" width="199" height="199">
 
 Have you implemented `turn`? Make sure you remember to call it in `Main.elm`!
 
-You should observe that turning a picture twice rotates it 180 degrees, and turning it four times produces the original picture. And by observe I mean try it out to verify it.
+If you find yourself stuck, don't worry! There are quite a few concepts to take in, so that's to be expected. Consider jumping to the `exercise-1` branch of the repo (`git checkout exercise-1`) to take a look at how I implemented the exercise. Once you've seen the solution to one exercise, you might find the next exercises more approachable. (And of course there are similarly named branches showing solutions to all the exercises in the workshop.)
+
+When you have a working implementation of `turn`, you should observe that turning a picture twice rotates it 180 degrees, and turning it four times produces the original picture. And by _observe_ I mean _try it out to verify it_.
 
 ### Exercise 2 : flip
 
@@ -249,11 +251,11 @@ You'll need to overlay four fish on top of each other, but you'll notice that tw
 
 ### Exercise 11 : side
 
-Now we're really getting somewhere! Just two more exercises, and then we'll tackle the "Square Limit" itself!
+Now you're really getting somewhere! Just two more exercises, and then you'll tackle the "Square Limit" itself!
 
-I won't lie though - those two exercises are probably the most difficult ones in this workshop. They both require us to create _recursive_ picture functions.
+I won't lie though - those two exercises are probably the most difficult ones in this workshop. They both require you to create _recursive_ picture functions.
 
-The one we'll tackle first is to create a function `side` that takes an integer `n` and a picture `p` (the fish) as parameters to produce a recursive picture. The integer designates the depth of recursion. 
+The one you'll tackle first is to create a function `side` that takes an integer `n` and a picture `p` (the fish) as parameters to produce a recursive picture. The integer designates the depth of recursion. 
 
 To understand the task better, let's look at the degenerate case where `n = 1` and the recursion stops. It should look like this:
 
