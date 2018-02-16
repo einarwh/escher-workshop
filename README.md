@@ -6,7 +6,7 @@ This workshop is based on the classic 1982 paper "Functional Geometry" by Peter 
 
 The focus in this workshop is on abstraction and composition. It uses Elm as the implementation language, but it is _not_ an Elm tutorial. If you came here looking for an proper Elm tutorial, or feel you need a tutorial before attempting this workshop, take a look at [Awesome Elm](https://github.com/isRuslan/awesome-elm) to find one that suits you.
 
-If all you need is a syntax cheat-sheet, you can take a look [here](Sample.elm).
+If all you need is a syntax cheat-sheet, you can take a look [here](Sheet.elm).
 
 This workshop is essentially a guided tour to Henderson's paper. You will implement a collection of simple yet powerful picture combinators that will ultimately enable you to recreate Henderson's replica of "Square Limit". You will do so in Elm because the replica will be an SVG, and the browser is a nice runtime for that.
 
