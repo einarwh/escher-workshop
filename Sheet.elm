@@ -1,4 +1,4 @@
-module Sample exposing (..)
+module Sheet exposing (..)
 
 -- A comment.
 

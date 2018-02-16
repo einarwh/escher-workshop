@@ -42,7 +42,7 @@ You should see something like this:
 
 <img src="files/figure-george.svg" width="200" height="200">
 
-We replaced the letter F with a stickman called George. (George is not my invention, he comes from the SICP lecture on Henderson's paper, you can - and should! - watch it [here](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/3a-henderson-escher-example/).)
+We replaced the letter F with a stickman called George. (George is not my invention, he comes from the [SICP lecture](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/3a-henderson-escher-example/) on Henderson's paper.)
 
 At this point, you probably have questions! Here are some answers, that may or may not fit those questions. First, `letterF` and `george` are shapes, mere data. More interestingly, `createPicture` is a function that creates a picture out of a shape. And most interestingly, a picture is also a function (!) - from a bounding box to an SVG rendering. This makes a picture somewhat magical, in that it can produce a bunch of different renderings, based on the box you give it.
 
@@ -145,7 +145,9 @@ Calling `above f (flip f)` should yield the following (with bounding boxes outli
 
 <img src="files/above-f-flip-f-arrows.svg" width="200" height="200">
 
-Define a more general function _aboveRatio_ that takes integers `n` and `m` as parameters, as well as `p1` and `p2` as above. The integers `n` and `m` are weights allocated to `p1` and `p2` respectively. 
+When solving this exercise, recall that a `Picture` is nothing more and nothing less than a function from a `Box` to a `Rendering`, and that a `Rendering` is a list of stuff. This should give you a clue as to how you create a single, composite rendering out of two simpler renderings. You will need to take the box you are given, and somehow use that to create two new boxes. If you pass these boxes to the pictures passed to `above`, you will have two renderings. How do you combine those into a single rendering? Well, they're just lists of stuff - and you do know how to combine lists, right?
+
+Define a more general function `aboveRatio` that takes integers `n` and `m` as parameters, as well as `p1` and `p2` as above. The integers `n` and `m` are weights allocated to `p1` and `p2` respectively. 
 
 Calling `aboveRatio 3 1 f (flip f)` should be interpreted as _allocate 3/4 of the original bounding box to the top picture and 1/4 to the bottom picture_, yielding the following:
 
@@ -219,7 +221,9 @@ But if you call `over fish (turn (turn fish))`, the result will be much more int
 
 <img src="files/over-fish.svg" width="302" height="200">
 
-When solving this exercise, recall that a `Picture` is nothing more and nothing less than a function from a `Box` to a `Rendering`, and that a `Rendering` is a list of stuff. This should give you a clue as to how you create a single, composite rendering out of two simpler renderings. (You know how to combine lists, right?)
+It might be helpful to think of `over` as a primitive version of `above`.
+
+(Bonus exercise: If you like, you can generalize `over` to take a list of pictures and render all of them on top of each other.)
 
 ### Exercise 9 : t-tile
 
