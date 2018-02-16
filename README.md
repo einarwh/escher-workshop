@@ -4,11 +4,11 @@ Welcome to the Escher-in-Elm Workshop!
 
 This workshop is based on the classic 1982 paper "Functional Geometry" by Peter Henderson. The paper shows the functional decomposition and reconstruction of Escher's woodcutting "Square Limit", a beautiful recursive tesselation of interleaving fish. In this workshop, we will follow in Henderson's footsteps as we create an SVG replica of it.
 
-The workshop uses Elm as the implementation language, but it is _not_ an Elm tutorial. If you feel need a proper Elm tutorial before attempting this workshop, take a look at [Awesome Elm](https://github.com/isRuslan/awesome-elm) to find one that suits you.
+The focus in this workshop is on abstraction and composition. It uses Elm as the implementation language, but it is _not_ an Elm tutorial. If you came here looking for an proper Elm tutorial, or feel you need a tutorial before attempting this workshop, take a look at [Awesome Elm](https://github.com/isRuslan/awesome-elm) to find one that suits you.
 
-If all you need is a syntax cheat-sheet, you can take a look here.
+If all you need is a syntax cheat-sheet, you can take a look [here](Sample.elm).
 
-The focus in this workshop is on abstraction and composition. We will see that Henderson's simple yet powerful picture combinators allow us to solve our task with ease and elegance. It happens to use Elm because we will be producing an SVG, and the browser is a nice runtime for that.
+This workshop is essentially a guided tour to Henderson's paper. You will implement a collection of simple yet powerful picture combinators that will ultimately enable you to recreate Henderson's replica of "Square Limit". You will do so in Elm because the replica will be an SVG, and the browser is a nice runtime for that.
 
 ## Getting started
 
@@ -207,7 +207,7 @@ If you pass it a suitable bounding box, the fish should render like this:
 
 You might find it weird that parts of the fish are rendered _outside_ the bounding box - I mean, is that even legal? It's not really bounded at all! But yes, it is quite legal. The picture will render its shape adjusted and fitted to the box you give it, but not necessarily _inside_ it. 
 
-Apart from that, the fish looks rather ordinary at first glance. But it does has some interesting properties that will become apparent in the next few exercises.
+Apart from that, the fish looks rather ordinary at first glance. But it does have some interesting properties that will become apparent in the next few exercises.
 
 ### Exercise 8 : over
 
