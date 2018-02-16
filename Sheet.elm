@@ -35,3 +35,15 @@ incthrice = inc >> inc >> inc
 -- Pipe forward.
 incthriceagain : Int -> Int 
 incthriceagain n = n |> inc |> inc |> inc
+
+-- Combine lists.
+join : List a -> List a -> List a
+join xs ys = xs ++ ys
+
+-- Combine many lists starring recursion and destructuring.
+joinall : List (List a) -> List a
+joinall xss = 
+  case xss of 
+   [] -> []
+   xs :: tail -> xs ++ joinall tail
+ 
