@@ -52,9 +52,9 @@ Let's return to the rendering of the letter F, and try to understand what happen
 
 <img src="files/letter-f-arrows.svg" width="199" height="199">
 
-Open `Box.elm` to see that a box is defined by three vectors: `a`, `b` and `c`. The red arrow is the `a` vector, which points from the origin (0, 0) to the bottom left corner of the box. The orange arrow is the `b` vector, which points from the bottom left corner to the bottom right corner, and spans out the box horizontally. The purple arrow points from the bottom left corner to the top left corner, and spans it out vertically. (What about the top right corner? It is implicitly defined by vectors `b` and `c` - you can get there from the bottom left corner if you follow `b` and then `c` or vice versa.)
+Open `Box.elm` to see that a box is defined by three vectors: `a`, `b` and `c`. The red arrow is the `a` vector, which points from the origin (0, 0) to the bottom left corner of the box. The orange arrow is the `b` vector, which points from the bottom left corner to the bottom right corner, and spans out the box horizontally. The purple arrow is the `c` vector and points from the bottom left corner to the top left corner, and spans it out vertically. (What about the top right corner? It is implicitly defined by vectors `b` and `c` - you can get there from the bottom left corner if you follow `b` and then `c` or vice versa.)
 
-Speaking of vectors: you might want to take a look at `Vector.elm` as well. Our vectors have two dimensions, `x` and `y`. You can add vectors together (by adding up the `x` and `y` dimensions separately), negate a vector (effectively have it pointing the other way) and subtract a vector from another. You can also scale a vector by some factor; a factor of 2 doubles it, a factor of 0.5 makes it half as long. And finally you can calculate the vector's length or magnitude. 
+Speaking of vectors: you might want to take a look at `Vector.elm` as well. The vectors have two dimensions, `x` and `y`. You can add vectors together (by adding up the `x` and `y` dimensions separately), negate a vector (effectively have it pointing the other way) and subtract a vector from another. You can also scale a vector by some factor; a factor of 2 doubles it, a factor of 0.5 makes it half as long. And finally you can calculate the vector's length or magnitude. 
 
 And that's about it for theory. Do you feel ready? You are ready. It's time to start doing some exercises!
 
@@ -79,7 +79,7 @@ turn p = p
 
 The key to solving this task is to exploit the magical self-fitting nature of the picture. We know that when the box changes, the rendering changes also. So to turn the picture, all you need to do is turn the box - the picture has no choice but to follow along! It's poor ol' George all over again. So you should open `Box.elm` and define a function `turnBox` there that handles the box-turning, and then have your `turn` function call `turnBox`.
 
-But how do you turn the box? Well, first off, you don't really turn the box. You create _another_ box that is turned when compared to the original. You'll want the `a` vector of the new box to point to the bottom right corner of the original box. (You can create that vector by adding the original `a` vector and the original `b` vector together.) The `b` vector needs to point straight up, just like the original `c` vector. And finally, the `c` vector should point to the left, in the exact opposite direction as the original `b` vector. 
+But how do you turn the box? Well, first off, you don't really turn the box. That is, you don't mutate the box you're given. You create _another_ box that is turned when compared to the original. You'll want the `a` vector of the new box to point to the bottom right corner of the original box. (You can create that vector by adding the original `a` vector and the original `b` vector together.) The `b` vector needs to point straight up, just like the original `c` vector. And finally, the `c` vector should point to the left, in the exact opposite direction as the original `b` vector. 
 
 That's a lot of words for something quite simple. Summarized in terms of vector arithmetic, we have this:
 ```
@@ -95,7 +95,7 @@ And finally, with vector arrows and an outlined bounding box, it looks like this
 
 Have you implemented `turn`? Make sure you remember to call it in `Main.elm`!
 
-If you find yourself stuck, don't worry! There are quite a few concepts to take in, so that's to be expected. Consider jumping to the `exercise-1` branch of the repo (`git checkout exercise-1`) to take a look at how I implemented the exercise. Once you've seen the solution to one exercise, you might find the next exercises more approachable. (And of course there are similarly named branches showing solutions to all the exercises in the workshop.)
+If you find yourself struggling, don't worry! There are quite a few concepts to take in, so that's to be expected. If you're completely stuck, you can jump to the `exercise-1` branch of the repo (`git checkout exercise-1`) to take a look at how I implemented the exercise. Once you've seen the solution to one exercise, you might find the next exercises more approachable. (And of course there are similarly named branches showing solutions to all the exercises in the workshop.)
 
 When you have a working implementation of `turn`, you should observe that turning a picture twice rotates it 180 degrees, and turning it four times produces the original picture. And by _observe_ I mean _try it out to verify it_.
 
@@ -147,7 +147,7 @@ Calling `above f (flip f)` should yield the following (with bounding boxes outli
 
 When solving this exercise, recall that a `Picture` is nothing more and nothing less than a function from a `Box` to a `Rendering`, and that a `Rendering` is a list of stuff. This should give you a clue as to how you create a single, composite rendering out of two simpler renderings. You will need to take the box you are given, and somehow use that to create two new boxes. If you pass these boxes to the pictures passed to `above`, you will have two renderings. How do you combine those into a single rendering? Well, they're just lists of stuff - and you do know how to combine lists, right? ([No?](Sheet.elm#L39))
 
-Define a more general function `aboveRatio` that takes integers `n` and `m` as parameters, as well as `p1` and `p2` as above. The integers `n` and `m` are weights allocated to `p1` and `p2` respectively. 
+Define a more general function `aboveRatio` that takes integers `n` and `m` as parameters, as well as `p1` and `p2` as above. The integers `n` and `m` are weights allocated to `p1` and `p2` respectively. So `p1` should be given a box that is `n / n + m` as tall as the original box, whereas the rest (`m / n + m`) is given to `p2`. 
 
 Calling `aboveRatio 3 1 f (flip f)` should be interpreted as _allocate 3/4 of the original bounding box to the top picture and 1/4 to the bottom picture_, yielding the following:
 
@@ -169,9 +169,9 @@ What happens if you render `beside f (beside (flip f) (turn f))`? How would go a
 
 ### Exercise 6 : quartet
 
-You might feel at this point that you're progressing slowly, and that "Square Limit" must be miles off. You still haven't seen a single fish. Despair not! You have come further along than you might think. Indeed, you are already ready to leave the low-level world of vectors completely behind! From now on, you'll concentrate on using the simple picture combinators you've written to create more powerful ones. 
+You might feel at this point that you're progressing slowly, and that "Square Limit" must be miles off. Unless you've cheated, you still haven't seen a single fish. Despair not! You have come further along than you might think. Indeed, you are already ready to leave the low-level world of vectors completely behind! From now on, you'll concentrate on using the simple picture combinators you've written to create more powerful ones. 
 
-Using `above` and `beside`, define a function `quartet` which takes four pictures `nw`, `ne`, `sw`and `se` as inputs and organizes them in a 2x2 grid. The names of the pictures hint at where in the grid they should be put.
+Using `above` and `beside`, define a function `quartet` which takes four pictures `nw`, `ne`, `sw`and `se` as inputs and organizes them in a 2x2 grid. The names of the pictures hint at where in the grid each picture should be put.
 
 See if you can recreate this picture:
 
@@ -191,7 +191,7 @@ Test your function by creating the following image:
 
 <img src="files/name-nonet.svg" width="200" height="200">
 
-You'll find the letters you need defined in `Letter.elm`.
+You'll find the letters you need defined in `Letter.elm`. You turn the letters into pictures by passing them to `createPicture`.
 
 Again, a nonet is just a picture, which can be used to create more complex pictures (including nonets). See if you can create the following picture:
 
@@ -201,7 +201,7 @@ Abstractions that compose are a wonderful thing.
 
 ### Pause for fish
 
-At this point, let's introduce Escher's fish! The shape of the fish is defined in `Fishy.elm`. You can turn the shape into a proper fish picture by calling `createPicture fishShapes`. You may have noticed that in `Main.elm`, the resulting picture is bound to the name `fish`.
+At this point, let's introduce Escher's fish! (My version of Henderson's version of it, anyway.) The shape of the fish is defined in `Fishy.elm`. You can turn the shape into a proper fish picture by calling `createPicture fishShapes`. You may have noticed that in `Main.elm`, the resulting picture is bound to the name `fish`.
 
 If you pass it a suitable bounding box, the fish should render like this:
 
@@ -235,7 +235,7 @@ Using `toss`, `flip`, `turn` and `over`, define a function `ttile` that takes a 
 
 (The big fish is easy, right? It's just the fish as-is! And the fish on top, with the bounding box that resembles the flap of an envelope, should make you think of tossing things into the air. And the final fish is very much similar to the fish on top.)
 
-You can imagine Escher spending some time coming up with the design for this fish.
+Presumably at this point, you can imagine Escher spending some time coming up with the design for this fish.
 
 ### Exercise 10 : u-tile
 
@@ -255,7 +255,7 @@ Now you're really getting somewhere! Just two more exercises, and then you'll ta
 
 I won't lie though - those two exercises are probably the most difficult ones in this workshop. They both require you to create _recursive_ picture functions.
 
-The one you'll tackle first is to create a function `side` that takes an integer `n` and a picture `p` (the fish) as parameters to produce a recursive picture. The integer designates the depth of recursion. 
+The one you'll tackle first is `side`, a function that takes an integer `n` and a picture `p` (the fish) as parameters to produce a recursive picture. The integer designates the depth of recursion. 
 
 To understand the task better, let's look at the degenerate case where `n = 1` and the recursion stops. It should look like this:
 
@@ -271,7 +271,7 @@ And so on and so forth.
 
 ### Exercise 12 : corner
 
-Next, you should write the second recursive function, called `corner`. Just like side, it takes an integer `n` and a picture `p` (the fish) as parameters to produce a recursive picture. 
+Next, you should write the second recursive function, called `corner`. Just like `side`, it takes an integer `n` and a picture `p` (the fish) as parameters to produce a recursive picture. 
 
 The degenerate case of `n = 1` is even simpler than for `side`:
 
@@ -297,6 +297,6 @@ For `n = 3`, `squareLimit` should look like this:
 
 I'd like to stress that the main lesson of this workshop is that `squareLimit` is still just a picture. There is no reason it can't be turned, flipped, tossed or combined into even more complex pictures! 
 
-And just for fun, you might want to explore what happens if you pass something else than the fish to `squareLimit`, like George or the letter H - or what about `squareLimit` itself? (Beware that at some point your browser will succumb under the weight of an SVG that is very large indeed.)
+And just for fun, you might want to explore what happens if you pass something else than the fish to `squareLimit`, like George or the letter H - or how about `squareLimit` itself? (Beware that at some point your browser will succumb under the weight of an SVG that is very large indeed.)
 
 
