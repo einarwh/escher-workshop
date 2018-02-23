@@ -14,3 +14,9 @@ turnBox { a, b, c } =
   , b = c
   , c = neg b }
   
+-- (a’, b’, c’) = (a + b, -b, c)
+flipBox : Box -> Box 
+flipBox { a, b, c } = 
+  { a = add a b
+  , b = neg b
+  , c = c }
