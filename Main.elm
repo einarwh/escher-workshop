@@ -14,7 +14,8 @@ main =
     box = { a = { x = 75.0, y = 75.0 }
           , b = { x = 250.0, y = 0.0 }
           , c = { x = 0.0, y = 250.0 } }
+    p = createPicture fLetter
   in     
-    box |> createPicture fLetter
+    box |> turn p 
         |> toSvg (400, 400)
  

@@ -14,7 +14,7 @@ blank _ = []
 -- Exercise 1
 
 turn : Picture -> Picture
-turn p = p
+turn p = turnBox >> p 
 
 -- Exercise 2
 
