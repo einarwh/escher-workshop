@@ -16,6 +16,6 @@ main =
           , c = { x = 0.0, y = 250.0 } }
     p = createPicture fLetter
   in     
-    box |> Picture.flip p 
+    box |> turn p
         |> toSvg (400, 400)
  

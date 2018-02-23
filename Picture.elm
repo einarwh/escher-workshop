@@ -19,7 +19,7 @@ turn p = turnBox >> p
 -- Exercise 2
 
 flip : Picture -> Picture 
-flip p = flipBox >> p 
+flip p = p
 
 -- Exercise 3
 
