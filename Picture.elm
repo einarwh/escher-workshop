@@ -57,7 +57,9 @@ beside = besideRatio 1 1
 -- Exercise 6
 
 quartet : Picture -> Picture -> Picture -> Picture -> Picture
-quartet nw ne sw se = blank
+quartet nw ne sw se = 
+  above (beside nw ne)
+        (beside sw se)
 
 -- Exercise 7
 

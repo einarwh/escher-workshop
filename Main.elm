@@ -14,8 +14,14 @@ main =
     box = { a = { x = 75.0, y = 75.0 }
           , b = { x = 250.0, y = 0.0 }
           , c = { x = 0.0, y = 250.0 } }
-    p = createPicture fLetter
+    p = createPicture george
+    nw = p
+    ne = p |> Picture.flip |> turn |> turn
+    sw = p |> turn |> turn
+    se = p |> Picture.flip 
+    pattern p = quartet p blank blank p 
+    qq p = quartet p p p p 
   in     
-    box |> beside (Picture.flip p) p 
+    box |> (quartet nw ne sw se |> pattern |> qq)
         |> toSvg (400, 400)
  
