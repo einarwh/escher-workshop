@@ -29,7 +29,13 @@ toss p = tossBox >> p
 -- Exercise 4
 
 aboveRatio : Int -> Int -> Picture -> Picture -> Picture 
-aboveRatio m n p1 p2 = blank
+aboveRatio m n p1 p2 = 
+  \box -> 
+    let 
+      f = toFloat m / toFloat (m + n)
+      (b1, b2) = splitVertically f box
+    in 
+      (p1 b1) ++ (p2 b2) 
 
 above : Picture -> Picture -> Picture 
 above = aboveRatio 1 1 
