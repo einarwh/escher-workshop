@@ -47,3 +47,23 @@ splitVertically f box =
     bot = box |> scaleVertically (1 - f)
   in
     (top, bot)
+
+moveHorizontally : Float -> Box -> Box 
+moveHorizontally f { a, b, c } = 
+  { a = add a (scale f b)
+  , b = b
+  , c = c }
+
+scaleHorizontally : Float -> Box -> Box 
+scaleHorizontally f { a, b, c } = 
+  { a = a
+  , b = scale f b 
+  , c = c }
+
+splitHorizontally : Float -> Box -> (Box, Box)
+splitHorizontally f box = 
+  let 
+    left = box |> scaleHorizontally f
+    right = box |> moveHorizontally f |> scaleHorizontally (1 - f)
+  in
+    (left, right)
