@@ -141,6 +141,8 @@ You don't have to work out the vector arithmetic yourself this time:
 (a’, b’, c’) = (a + (b + c) / 2, (b + c) / 2, (c − b) / 2)
 ```
 
+(Tip: recall that dividing by two is the same as multiplying by half.)
+
 Whee! High up in the air!
 
 ### Exercise 4 : above
