@@ -1,4 +1,4 @@
-module Fishy exposing (hendersonFishShapes)
+module Fishy exposing (fishShapes)
 
 import Vector exposing (Vector)
 import Shape exposing (Shape, CurveShape)
@@ -140,5 +140,5 @@ hendersonFishCurves = [
                 (createVector 0.172 0.780) -- 
                 (createVector 0.187 0.752) ]
 
-hendersonFishShapes : List Shape
-hendersonFishShapes = hendersonFishCurves |> List.map Shape.Curve
+fishShapes : List Shape
+fishShapes = hendersonFishCurves |> List.map Shape.Curve

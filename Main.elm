@@ -4,7 +4,6 @@ import Letter exposing (..)
 import Figure exposing (george)
 import Fishy exposing (..)
 import Fitting exposing (..)
-import Box exposing (..)
 import Picture exposing (..)
 import Rendering exposing (..)
 import Svg exposing (Svg)
@@ -15,36 +14,10 @@ main =
     box = { a = { x = 0.0, y = 0.0 }
           , b = { x = 200.0, y = 0.0 }
           , c = { x = 0.0, y = 200.0 } }
+    fish = createPicture fishShapes
     f = createPicture fLetter
-    h = createPicture hLetter
-    e = createPicture eLetter
-    n = createPicture nLetter
-    d = createPicture dLetter 
-    r = createPicture rLetter 
-    s = createPicture sLetter 
-    o = createPicture oLetter
-    nw = h
-    nm = e 
-    ne = n 
-    mw = d 
-    mm = e 
-    me = r 
-    sw = s 
-    sm = o
-    se = n
-    name = nonet nw nm ne mw mm me sw sm se 
-    zoom p = nonet nw nm ne mw p me sw sm se 
-    fish = createPicture hendersonFishShapes
-    g = createPicture george 
-    gnw = g
-    gne = g |> Picture.turns 2 |> Picture.flip
-    gsw = g |> Picture.turns 2
-    gse = g |> Picture.flip
-    q = quartet gnw gne gsw gse
-    qq = quartet q blank blank q
-    pattern p = quartet qq qq qq qq
-    (b1, b2) = splitHorizontally 0.375 box
+    g = createPicture george     
   in     
-    box |> besideRatio 3 5 f (Picture.flip f)
+    box |> f
         |> toSvg (200, 200)
  
