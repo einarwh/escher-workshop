@@ -86,7 +86,12 @@ nonet nw nm ne mw mm me sw sm se =
 -- Exercise 8
 
 over : Picture -> Picture -> Picture 
-over p1 p2 = blank
+over p1 p2 = 
+  \box -> p1 box ++ p2 box
+
+overall : List Picture -> Picture 
+overall ps = 
+  \box -> List.concatMap (\p -> p box) ps
 
 -- Exercise 9
 

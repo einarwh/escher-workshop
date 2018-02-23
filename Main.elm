@@ -14,24 +14,9 @@ main =
     box = { a = { x = 75.0, y = 75.0 }
           , b = { x = 250.0, y = 0.0 }
           , c = { x = 0.0, y = 250.0 } }
-    h = createPicture hLetter
-    e = createPicture eLetter
-    n = createPicture nLetter
-    d = createPicture dLetter 
-    r = createPicture rLetter 
-    s = createPicture sLetter
-    o = createPicture oLetter 
-    nw = h 
-    nm = e 
-    ne = n
-    mw = d
-    mm = e 
-    me = r
-    sw = s
-    sm = o 
-    se = n
-    zoom p = nonet nw nm ne mw p me sw sm se 
+    fish = createPicture fishShapes
   in     
-    box |> (nonet nw nm ne mw mm me sw sm se |> zoom |> zoom)
+    -- box |> overall [fish, turn (turn fish)]
+    box |> over fish (turn (turn fish)) 
         |> toSvg (400, 400)
  
