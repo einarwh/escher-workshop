@@ -14,14 +14,24 @@ main =
     box = { a = { x = 75.0, y = 75.0 }
           , b = { x = 250.0, y = 0.0 }
           , c = { x = 0.0, y = 250.0 } }
-    p = createPicture george
-    nw = p
-    ne = p |> Picture.flip |> turn |> turn
-    sw = p |> turn |> turn
-    se = p |> Picture.flip 
-    pattern p = quartet p blank blank p 
-    qq p = quartet p p p p 
+    h = createPicture hLetter
+    e = createPicture eLetter
+    n = createPicture nLetter
+    d = createPicture dLetter 
+    r = createPicture rLetter 
+    s = createPicture sLetter
+    o = createPicture oLetter 
+    nw = h 
+    nm = e 
+    ne = n
+    mw = d
+    mm = e 
+    me = r
+    sw = s
+    sm = o 
+    se = n
+    zoom p = nonet nw nm ne mw p me sw sm se 
   in     
-    box |> (quartet nw ne sw se |> pattern |> qq)
+    box |> (nonet nw nm ne mw mm me sw sm se |> zoom |> zoom)
         |> toSvg (400, 400)
  

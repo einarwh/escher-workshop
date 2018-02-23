@@ -63,8 +63,25 @@ quartet nw ne sw se =
 
 -- Exercise 7
 
+row : List Picture -> Picture 
+row ps = 
+  case ps of 
+    [] -> blank
+    [p] -> p 
+    p::rest -> besideRatio 1 (List.length rest) p (row rest)
+
+column : List Picture -> Picture 
+column ps = 
+  case ps of 
+    [] -> blank
+    [p] -> p 
+    p::rest -> aboveRatio 1 (List.length rest) p (column rest)
+
 nonet : Picture -> Picture -> Picture -> Picture -> Picture -> Picture -> Picture -> Picture -> Picture -> Picture 
-nonet nw nm ne mw mm me sw sm se = blank
+nonet nw nm ne mw mm me sw sm se = 
+  [[nw,nm,ne], [mw,mm,me], [sw,sm,se]]
+  |> List.map row
+  |> column
 
 -- Exercise 8
 
