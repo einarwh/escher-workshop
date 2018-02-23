@@ -14,27 +14,22 @@ blank _ = []
 -- Exercise 1
 
 turn : Picture -> Picture
-turn p = turnBox >> p  
+turn p = p
 
 -- Exercise 2
 
 flip : Picture -> Picture 
-flip p = flipBox >> p 
+flip p = p
 
 -- Exercise 3
 
 toss : Picture -> Picture 
-toss p = tossBox >> p 
+toss p = p 
 
 -- Exercise 4
 
 aboveRatio : Int -> Int -> Picture -> Picture -> Picture 
-aboveRatio m n p1 p2 box =   
-  let 
-    f = toFloat m / toFloat (m + n)
-    (b1, b2) = splitVertically f box
-  in  
-    (p1 b1) ++ (p2 b2)
+aboveRatio m n p1 p2 = blank
 
 above : Picture -> Picture -> Picture 
 above = aboveRatio 1 1 
