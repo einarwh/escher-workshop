@@ -1,4 +1,4 @@
-module Fitting exposing (..)
+module Fitting exposing (createPicture)
 
 import Vector exposing (Vector, add, scale, length) 
 import Box exposing (Box)

@@ -1,4 +1,4 @@
-module Rendering exposing(..)
+module Rendering exposing (toSvg)
 
 import Vector exposing (Vector)
 import Shape exposing (..)

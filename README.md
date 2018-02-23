@@ -44,7 +44,15 @@ The letter F has been replaced with a stickman called George. (George is not my 
 
 At this point, you probably have questions! Here are some answers, that may or may not fit those questions. First, `letterF` and `george` are shapes, mere data. More interestingly, `createPicture` is a function that creates a picture out of a shape. And most interestingly, a picture is also a function (!) - from a bounding box to an SVG rendering. This makes a picture somewhat magical, in that it can produce a bunch of different renderings, based on the box you give it.
 
-Try to mess around with the bounding box passed to George and see what happens. He has no choice but to stretch and contract to fit the box! Poor ol' George! Here he is all thin and skewed and weird: 
+Initially, the box looks like this: 
+```
+box = { a = { x = 75.0, y = 75.0 }
+      , b = { x = 250.0, y = 0.0 }
+      , c = { x = 0.0, y = 250.0 } }
+```
+Which outlines a nice square box for George to live in. 
+
+Try to change some of the numbers. Mess around with the bounding box passed to George and see what happens. He has no choice but to stretch and contract to fit the box! Poor ol' George! Here he is all thin and skewed and weird: 
 
 <img src="files/figure-george-skewed.svg" width="200" height="200">
 
@@ -201,7 +209,7 @@ Abstractions that compose are a wonderful thing.
 
 ### Pause for fish
 
-At this point, let's introduce Escher's fish! (My version of Henderson's version of it, anyway.) The shape of the fish is defined in `Fishy.elm`. You can turn the shape into a proper fish picture by calling `createPicture fishShapes`. You may have noticed that in `Main.elm`, the resulting picture is bound to the name `fish`.
+At this point, let's introduce Escher's fish! (My version of Henderson's version of it, anyway.) The shape of the fish is defined in `Fishy.elm`. You can turn the shape into a proper fish picture by calling `createPicture fishShapes`.
 
 If you pass it a suitable bounding box, the fish should render like this:
 

@@ -1,23 +1,20 @@
-module Main exposing (..)
+module Main exposing (main)
 
 import Letter exposing (..)
 import Figure exposing (george)
-import Fishy exposing (..)
-import Fitting exposing (..)
+import Fishy exposing (fishShapes)
+import Fitting exposing (createPicture)
 import Picture exposing (..)
-import Rendering exposing (..)
+import Rendering exposing (toSvg)
 import Svg exposing (Svg)
 
 main : Svg msg
 main = 
   let 
-    box = { a = { x = 0.0, y = 0.0 }
-          , b = { x = 200.0, y = 0.0 }
-          , c = { x = 0.0, y = 200.0 } }
-    fish = createPicture fishShapes
-    f = createPicture fLetter
-    g = createPicture george     
+    box = { a = { x = 75.0, y = 75.0 }
+          , b = { x = 250.0, y = 0.0 }
+          , c = { x = 0.0, y = 250.0 } }
   in     
-    box |> f
-        |> toSvg (200, 200)
+    box |> createPicture fLetter
+        |> toSvg (400, 400)
  
