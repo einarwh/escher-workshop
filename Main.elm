@@ -16,6 +16,6 @@ main =
           , c = { x = 0.0, y = 250.0 } }
     p = createPicture fLetter
   in     
-    box |> beside (Picture.flip p) p 
+    box |> (besideRatio 1 2 p (beside (turn p) (turn (turn p))) |> turn)
         |> toSvg (400, 400)
  
