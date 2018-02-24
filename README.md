@@ -186,7 +186,7 @@ Can you turn the composite picture you just made?
 
 You might feel at this point that you're progressing slowly, and that "Square Limit" must be miles off. Unless you've cheated, you still haven't seen a single fish. Despair not! You have come further along than you might think. Indeed, you are already ready to leave the low-level world of vectors completely behind! From now on, you'll concentrate on using the simple picture combinators you've written to create more powerful ones. 
 
-Using `above` and `beside`, define a function `quartet` which takes four pictures `nw`, `ne`, `sw`and `se` as inputs and organizes them in a 2x2 grid. The names of the pictures hint at where in the grid each picture should be put.
+Using `above` and `beside`, define a function `quartet` which takes four pictures `nw`, `ne`, `sw`and `se` as inputs and organizes them in a 2x2 grid. The names of the pictures hint at where in the grid each picture should be put. I hope you will be pleasantly surprised by how easy it is.
 
 See if you can recreate this picture:
 
@@ -238,7 +238,7 @@ But if you call `over fish (turn (turn fish))`, the result is much more interest
 
 It might be helpful to think of `over` as a primitive version of `above` when solving this exercise.
 
-(Bonus exercise: If you like, you can generalize `over` to take a list of pictures and render all of them on top of each other.)
+(_Optional bonus exercise_: If you like, you can generalize `over` to take a list of pictures and render all of them on top of each other.)
 
 ### Exercise 9 : t-tile
 
