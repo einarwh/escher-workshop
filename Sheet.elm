@@ -8,6 +8,7 @@ add : Int -> Int -> Int
 add a b = a + b
 
 -- Essentially same function.
+-- It's just a name bound to an anonymous function.
 addagain : Int -> Int -> Int
 addagain = \a -> \b -> a + b
 
@@ -46,4 +47,30 @@ joinall xss =
   case xss of 
    [] -> []
    xs :: tail -> xs ++ joinall tail
- 
+
+-- Defining an alias for a tuple type.
+-- Pair is the alias, ( Int, Int ) is the tuple type.
+type alias Pair = ( Int, Int )
+
+-- Using the tuple type alias in a function signature, 
+-- with parameter destructuring.
+addtup : Pair -> Int 
+addtup (x, y) = x + y
+
+-- Same function without type alias.
+addtuple : (Int, Int) -> Int 
+addtuple (x, y) = x + y 
+
+-- Defining an alias for a record type.
+-- Point is the alias, { x : Int, y : Int } is the record type.
+type alias Point = { x : Int, y : Int }
+
+-- Using the record type alias in a function signature.
+movepoint : Point -> Point 
+movepoint pt = 
+  { x = pt.x + 1, y = pt.y + 1 }
+
+-- Same function with parameter destructuring.
+movept : Point -> Point 
+movept { x, y } = 
+  { x = x + 1, y = y + 1 }
