@@ -139,4 +139,18 @@ corner n fish =
 -- Exercise 13
 
 squareLimit : Int -> Picture -> Picture
-squareLimit n fish = blank
+squareLimit n fish = 
+  let 
+    c = corner n fish 
+    s = side n fish 
+    nw = c 
+    nm = s 
+    ne = c |> turn |> turn |> turn
+    mw = s |> turn
+    mm = utile fish 
+    me = s |> turn |> turn |> turn
+    sw = c |> turn
+    sm = s |> turn |> turn
+    se = c |> turn |> turn
+  in
+    nonet nw nm ne mw mm me sw sm se    
