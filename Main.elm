@@ -16,6 +16,6 @@ main =
           , c = { x = 0.0, y = 250.0 } }
     fish = createPicture fishShapes
   in     
-    box |> utile fish 
+    box |> side 3 fish 
         |> toSvg (400, 400)
  
