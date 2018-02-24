@@ -144,7 +144,7 @@ You don't have to work out the vector arithmetic yourself this time:
 (a’, b’, c’) = (a + (b + c) / 2, (b + c) / 2, (c − b) / 2)
 ```
 
-(Tip: recall that dividing by two is the same as multiplying by half.)
+(Tip: recall that dividing by two is the same as multiplying by half, and that `scale` does scalar multiplication of vectors.)
 
 Whee! High up in the air!
 
