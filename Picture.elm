@@ -16,6 +16,15 @@ blank _ = []
 turn : Picture -> Picture
 turn p = turnBox >> p 
 
+-- Entirely optional bonus exercise:
+times : Int -> (a -> a) -> (a -> a)
+times n fn = 
+  if n == 0 then identity 
+  else fn >> (times (n - 1) fn)
+
+turns : Int -> (Picture -> Picture)
+turns n = times n turn 
+
 -- Exercise 2
 
 flip : Picture -> Picture 
