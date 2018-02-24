@@ -107,6 +107,9 @@ If you find yourself struggling, don't worry! There are quite a few concepts to 
 
 When you have a working implementation of `turn`, you should observe that turning a picture twice rotates it 180 degrees, and turning it four times produces the original picture. And by _observe_ I mean _try it out to verify it_.
 
+(_Entirely optional advanced bonus exercise not needed to progress in this workshop_: If you are very comfortable with recursion and composition, create a helper function `times` with the type signature
+`Int -> (a -> a) -> (a -> a)`. The function takes a number and a function as parameters, and composes that function _with itself_ the number of times you specify. For instance, if you have a function `double x = x + x`, calling `(times 2 double) 3` would be tantamount to calling `(double >> double) 3`, both yielding 12 as result. Calling `(times 0 double) 3` should apply the double function 0 times, yielding 3. Use `times` to define a function `turns` that turns a picture the specified number of times.)
+
 ### Exercise 2 : flip
 
 Define a function `flip`, which flips a picture about the center vertical axis of its bounding box. 
@@ -141,6 +144,8 @@ You don't have to work out the vector arithmetic yourself this time:
 (a’, b’, c’) = (a + (b + c) / 2, (b + c) / 2, (c − b) / 2)
 ```
 
+(Tip: recall that dividing by two is the same as multiplying by half, and that `scale` does scalar multiplication of vectors.)
+
 Whee! High up in the air!
 
 ### Exercise 4 : above
@@ -153,7 +158,7 @@ Calling `above f (flip f)` should yield the following (with bounding boxes outli
 
 <img src="files/above-f-flip-f-arrows.svg" width="200" height="200">
 
-When solving this exercise, recall that a `Picture` is nothing more and nothing less than a function from a `Box` to a `Rendering`, and that a `Rendering` is a list of stuff. This should give you a clue as to how you create a single, composite rendering out of two simpler renderings. You will need to take the box you are given, and somehow use that to create two new boxes. If you pass these boxes to the pictures passed to `above`, you will have two renderings. How do you combine those into a single rendering? Well, they're just lists of stuff - and you do know how to combine lists, right? ([No?](Sheet.elm#L39))
+When solving this exercise, recall that a `Picture` is nothing more and nothing less than a function from a `Box` to a `Rendering`, and that a `Rendering` is a list of stuff. This should give you a clue as to how you create a single, composite rendering out of two simpler renderings. You will need to take the box you are given, and somehow use that to create two new boxes. One of those boxes will need to be moved a bit (essentially: given a new `a` vector), and both will need to be scaled or shrunk. In sum, they should cover the same area as the original box. If you pass these boxes to the pictures passed to `above`, you will have two renderings. How do you combine those into a single rendering? Well, they're just lists of stuff - and you do know how to combine lists, right? ([No?](Sheet.elm#L39))
 
 Define a more general function `aboveRatio` that takes integers `n` and `m` as parameters, as well as `p1` and `p2` as above. The integers `n` and `m` are weights allocated to `p1` and `p2` respectively. So `p1` should be given a box that is `n / n + m` as tall as the original box, whereas the rest (`m / n + m`) is given to `p2`. 
 
@@ -161,7 +166,7 @@ Calling `aboveRatio 3 1 f (flip f)` should be interpreted as _allocate 3/4 of th
 
 <img src="files/aboveRatio-f-flip-f.svg" width="200" height="200">
 
-Now implement `above` in terms of `aboveRatio`.
+Now implement `above` in terms of `aboveRatio`. It should be a one-liner.
 
 ### Exercise 5 : beside
 
@@ -173,13 +178,15 @@ Calling `besideRatio 3 5 f (flip f)` should be interpreted as _allocate 3/8 of t
 
 Define `beside` in terms of `besideRatio`.
 
-What happens if you render `beside f (beside (flip f) (turn f))`? How would go about allocating an equal amount of space for three pictures?
+What happens if you render `beside f (beside (turn f) (turn (turn f)))`? How would you go about allocating an equal amount of space for three pictures? 
+
+Can you turn the composite picture you just made? 
 
 ### Exercise 6 : quartet
 
 You might feel at this point that you're progressing slowly, and that "Square Limit" must be miles off. Unless you've cheated, you still haven't seen a single fish. Despair not! You have come further along than you might think. Indeed, you are already ready to leave the low-level world of vectors completely behind! From now on, you'll concentrate on using the simple picture combinators you've written to create more powerful ones. 
 
-Using `above` and `beside`, define a function `quartet` which takes four pictures `nw`, `ne`, `sw`and `se` as inputs and organizes them in a 2x2 grid. The names of the pictures hint at where in the grid each picture should be put.
+Using `above` and `beside`, define a function `quartet` which takes four pictures `nw`, `ne`, `sw`and `se` as inputs and organizes them in a 2x2 grid. The names of the pictures hint at where in the grid each picture should be put. I hope you will be pleasantly surprised by how easy it is.
 
 See if you can recreate this picture:
 
@@ -231,7 +238,7 @@ But if you call `over fish (turn (turn fish))`, the result is much more interest
 
 It might be helpful to think of `over` as a primitive version of `above` when solving this exercise.
 
-(Bonus exercise: If you like, you can generalize `over` to take a list of pictures and render all of them on top of each other.)
+(_Optional bonus exercise_: If you like, you can generalize `over` to take a list of pictures and render all of them on top of each other.)
 
 ### Exercise 9 : t-tile
 
