@@ -16,6 +16,6 @@ main =
           , c = { x = 0.0, y = 250.0 } }
     p = createPicture fLetter
   in     
-    box |> aboveRatio 1 2 p (above (turn p) (turn (turn p)))
+    box |> aboveRatio 3 1 p (Picture.flip p)
         |> toSvg (400, 400)
  
