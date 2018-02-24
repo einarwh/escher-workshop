@@ -13,7 +13,7 @@ mapper { a, b, c } { x, y } =
 getStrokeWidth : Box -> Float
 getStrokeWidth { b, c } =
   let 
-    s = min (length b) (length c) 
+    s = max (length b) (length c) 
   in
     s / 80.0
 
