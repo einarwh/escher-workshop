@@ -14,17 +14,17 @@ blank _ = []
 -- Exercise 1
 
 turn : Picture -> Picture
-turn p = turnBox >> p 
+turn p = p
 
 -- Exercise 2
 
 flip : Picture -> Picture 
-flip p = flipBox >> p 
+flip p = p 
 
 -- Exercise 3
 
 toss : Picture -> Picture 
-toss p = tossBox >> p 
+toss p = p 
 
 -- Exercise 4
 
