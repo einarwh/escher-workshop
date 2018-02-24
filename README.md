@@ -107,6 +107,9 @@ If you find yourself struggling, don't worry! There are quite a few concepts to 
 
 When you have a working implementation of `turn`, you should observe that turning a picture twice rotates it 180 degrees, and turning it four times produces the original picture. And by _observe_ I mean _try it out to verify it_.
 
+(_Entirely optional advanced bonus exercise not needed to progress in this workshop_: If you are very comfortable with recursion and composition, create a helper function `times` with the type signature
+`Int -> (a -> a) -> (a -> a)`. The function takes a number and a function as parameters, and composes that function _with itself_ the number of times you specify. For instance, if you have a function `double x = x + x`, calling `(times 2 double) 3` would be tantamount to calling `(double >> double) 3`, both yielding 12 as result. Calling `(times 0 double) 3` should apply the double function 0 times, yielding 3. Use `times` to define a function `turns` that turns a picture the specified number of times.)
+
 ### Exercise 2 : flip
 
 Define a function `flip`, which flips a picture about the center vertical axis of its bounding box. 
