@@ -130,6 +130,8 @@ Note that flipping a picture twice (indeed any even number of times) produces th
 
 Try experimenting with combinations of flips and turns. 
 
+Also, since both `flip` and `turn` are functions of type `Picture -> Picture`, you can freely compose them into new functions of the same type, such as `ttf = turn >> turn >> flip`.
+
 ### Exercise 3 : toss
 
 Define a function `toss`, which resembles tossing a picture light-heartedly into the air! More precisely, it should rotate the picture 45 degrees around top left corner of the bounding box, and also shrink the sides of the bounding box by a factor of √2. 
