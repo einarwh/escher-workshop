@@ -16,7 +16,6 @@ main =
           , c = { x = 0.0, y = 250.0 } }
     fish = createPicture fishShapes
   in     
-    -- box |> overall [fish, turn (turn fish)]
-    box |> over fish (turn (turn fish)) 
+    box |> ttile fish 
         |> toSvg (400, 400)
  

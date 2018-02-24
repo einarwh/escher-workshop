@@ -96,7 +96,12 @@ overall ps =
 -- Exercise 9
 
 ttile : Picture -> Picture
-ttile fish = blank
+ttile fish = 
+  let 
+    fishN = fish |> toss |> flip
+    fishE = fishN |> turn |> turn |> turn 
+  in 
+    overall [fish, fishN, fishE]
 
 -- Exercise 10
 
