@@ -106,7 +106,14 @@ ttile fish =
 -- Exercise 10
 
 utile : Picture -> Picture 
-utile fish = blank
+utile fish = 
+  let 
+    fishN = fish |> toss |> flip
+    fishW = turn fishN
+    fishS = turn fishW
+    fishE = turn fishS
+  in 
+    overall [fishN, fishW, fishS, fishE]
 
 -- Exercise 11
 
