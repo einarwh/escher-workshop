@@ -164,7 +164,7 @@ Calling `above f (flip f)` should yield the following (with bounding boxes outli
 
 When solving this exercise, recall that a `Picture` is nothing more and nothing less than a function from a `Box` to a `Rendering`, and that a `Rendering` is a list of stuff. This should give you a clue as to how you create a single, composite rendering out of two simpler renderings. You will need to take the box you are given, and somehow use that to create two new boxes. One of those boxes will need to be moved a bit (essentially: given a new `a` vector), and both will need to be scaled (shrunk vertically). In sum, they should cover the same area as the original box. If you pass one of these boxes to each of the pictures passed to `above`, you will have two renderings. How do you combine those into a single rendering? Well, they're just lists of stuff - and you do know how to combine lists, right? ([No?](Sheet.elm#L39))
 
-Define a more general function `aboveRatio` that takes integers `n` and `m` as parameters, as well as `p1` and `p2` as above. The integers `n` and `m` are weights allocated to `p1` and `p2` respectively. So `p1` should be given a box that is `n / n + m` as tall as the original box, whereas the rest (`m / n + m`) is given to `p2`. 
+Define a more general function `aboveRatio` that takes integers `m` and `n` as parameters, as well as `p1` and `p2` as above. The integers `m` and `n` are weights allocated to `p1` and `p2` respectively. So `p1` should be given a box that is `m / m + n` as tall as the original box, whereas the rest (`n / m + n`) is given to `p2`. 
 
 Calling `aboveRatio 3 1 f (flip f)` should be interpreted as _allocate 3/4 of the original bounding box to the top picture and 1/4 to the bottom picture_, yielding the following:
 
@@ -192,7 +192,7 @@ You might feel at this point that you're progressing slowly, and that "Square Li
 
 Using `above` and `beside`, define a function `quartet` which takes four pictures `nw`, `ne`, `sw`and `se` as inputs and organizes them in a 2x2 grid. The names of the pictures hint at where in the grid each picture should be put. I hope you will be pleasantly surprised by how easy it is.
 
-See if you can recreate this picture:
+See if you can recreate this picture, by passing appropriately transformed Georges to `quartet`:
 
 <img src="files/quartet-george.svg" width="200" height="200">
 
