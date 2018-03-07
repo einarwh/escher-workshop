@@ -70,7 +70,16 @@ movepoint : Point -> Point
 movepoint pt = 
   { x = pt.x + 1, y = pt.y + 1 }
 
+-- Same function with let bindings.
+movept2 : Point -> Point 
+movept2 pt =
+  let 
+    x = pt.x 
+    y = pt.y 
+  in 
+    { x = x, y = y }
+
 -- Same function with parameter destructuring.
-movept : Point -> Point 
-movept { x, y } = 
+movept3 : Point -> Point 
+movept3 { x, y } = 
   { x = x + 1, y = y + 1 }
