@@ -40,7 +40,7 @@ You should see something like this:
 
 <img src="files/figure-george.svg" width="200" height="200">
 
-The letter F has been replaced with a stickman called George. (George is not my invention, he comes from the [SICP lecture](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/3a-henderson-escher-example/) on Henderson's paper.)
+The letter F has been replaced with a stickman called George, stolen from the [SICP lecture](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/3a-henderson-escher-example/) on Henderson's paper.
 
 At this point, you probably have questions! Here are some answers, that may or may not fit those questions. First, `letterF` and `george` are shapes, mere data. More interestingly, `createPicture` is a function that creates a picture out of a shape. And most interestingly, a picture is also a function (!) - from a bounding box to an SVG rendering. This makes a picture somewhat magical, in that it can produce a bunch of different renderings, based on the box you give it.
 
@@ -126,9 +126,13 @@ Here's how the flipped F looks with box and arrows:
 
 You should be able to work out the vector arithmetic on your own.
 
+_Annoying pitfall: when calling `flip` in `Main.elm`, you'll need to prefix it with the module name, like so: `Picture.flip`. The reason is that there already is another `flip` function defined in the `Basics` module, which Elm imports by default._
+
 Note that flipping a picture twice (indeed any even number of times) produces the original picture. 
 
 Try experimenting with combinations of flips and turns. 
+
+Also, since both `flip` and `turn` are functions of type `Picture -> Picture`, you can freely compose them into new functions of the same type, such as `ttf = turn >> turn >> flip`.
 
 ### Exercise 3 : toss
 
@@ -158,9 +162,9 @@ Calling `above f (flip f)` should yield the following (with bounding boxes outli
 
 <img src="files/above-f-flip-f-arrows.svg" width="200" height="200">
 
-When solving this exercise, recall that a `Picture` is nothing more and nothing less than a function from a `Box` to a `Rendering`, and that a `Rendering` is a list of stuff. This should give you a clue as to how you create a single, composite rendering out of two simpler renderings. You will need to take the box you are given, and somehow use that to create two new boxes. One of those boxes will need to be moved a bit (essentially: given a new `a` vector), and both will need to be scaled or shrunk. In sum, they should cover the same area as the original box. If you pass these boxes to the pictures passed to `above`, you will have two renderings. How do you combine those into a single rendering? Well, they're just lists of stuff - and you do know how to combine lists, right? ([No?](Sheet.elm#L39))
+When solving this exercise, recall that a `Picture` is nothing more and nothing less than a function from a `Box` to a `Rendering`, and that a `Rendering` is a list of stuff. This should give you a clue as to how you create a single, composite rendering out of two simpler renderings. You will need to take the box you are given, and somehow use that to create two new boxes. One of those boxes will need to be moved a bit (essentially: given a new `a` vector), and both will need to be scaled (shrunk vertically). In sum, they should cover the same area as the original box. If you pass one of these boxes to each of the pictures passed to `above`, you will have two renderings. How do you combine those into a single rendering? Well, they're just lists of stuff - and you do know how to combine lists, right? ([No?](Sheet.elm#L39))
 
-Define a more general function `aboveRatio` that takes integers `n` and `m` as parameters, as well as `p1` and `p2` as above. The integers `n` and `m` are weights allocated to `p1` and `p2` respectively. So `p1` should be given a box that is `n / n + m` as tall as the original box, whereas the rest (`m / n + m`) is given to `p2`. 
+Define a more general function `aboveRatio` that takes integers `m` and `n` as parameters, as well as `p1` and `p2` as above. The integers `m` and `n` are weights allocated to `p1` and `p2` respectively. So `p1` should be given a box that is `m / m + n` as tall as the original box, whereas the rest (`n / m + n`) is given to `p2`. 
 
 Calling `aboveRatio 3 1 f (flip f)` should be interpreted as _allocate 3/4 of the original bounding box to the top picture and 1/4 to the bottom picture_, yielding the following:
 
@@ -188,7 +192,7 @@ You might feel at this point that you're progressing slowly, and that "Square Li
 
 Using `above` and `beside`, define a function `quartet` which takes four pictures `nw`, `ne`, `sw`and `se` as inputs and organizes them in a 2x2 grid. The names of the pictures hint at where in the grid each picture should be put. I hope you will be pleasantly surprised by how easy it is.
 
-See if you can recreate this picture:
+See if you can recreate this picture, by passing appropriately transformed Georges to `quartet`:
 
 <img src="files/quartet-george.svg" width="200" height="200">
 
