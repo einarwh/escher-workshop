@@ -112,7 +112,7 @@ utile fish =
     fishS = turn fishW
     fishE = turn fishS
   in 
-    overall [fishN, fishW, fishS, fishE]
+    over fishN (over fishW (over fishS fishE))
 
 -- Exercise 11
 
