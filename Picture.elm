@@ -28,7 +28,7 @@ turns n = times n turn
 -- Exercise 2
 
 flip : Picture -> Picture 
-flip p = p 
+flip p = flipBox >> p 
 
 -- Exercise 3
 
