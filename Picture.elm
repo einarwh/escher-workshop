@@ -47,7 +47,7 @@ aboveRatio m n p1 p2 =
       (p1 b1) ++ (p2 b2) 
 
 above : Picture -> Picture -> Picture 
-above p1 p2 = blank 
+above = aboveRatio 1 1  
 
 -- Exercise 5
 
