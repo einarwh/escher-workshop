@@ -47,7 +47,7 @@ aboveRatio m n p1 p2 =
       (p1 b1) ++ (p2 b2) 
 
 above : Picture -> Picture -> Picture 
-above = aboveRatio 1 1 
+above = aboveRatio 1 1  
 
 -- Exercise 5
 
@@ -72,25 +72,15 @@ quartet nw ne sw se =
 
 -- Exercise 7
 
-row : List Picture -> Picture 
-row ps = 
-  case ps of 
-    [] -> blank
-    [p] -> p 
-    p::rest -> besideRatio 1 (List.length rest) p (row rest)
-
-column : List Picture -> Picture 
-column ps = 
-  case ps of 
-    [] -> blank
-    [p] -> p 
-    p::rest -> aboveRatio 1 (List.length rest) p (column rest)
-
 nonet : Picture -> Picture -> Picture -> Picture -> Picture -> Picture -> Picture -> Picture -> Picture -> Picture 
 nonet nw nm ne mw mm me sw sm se = 
-  [[nw,nm,ne], [mw,mm,me], [sw,sm,se]]
-  |> List.map row
-  |> column
+  let 
+    row w m e = besideRatio 1 2 w (beside m e)
+    column n m s = aboveRatio 1 2 n (above m s)
+  in 
+    column (row nw nm ne)
+           (row mw mm me)
+           (row sw sm se)
 
 -- Exercise 8
 
