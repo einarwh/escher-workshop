@@ -61,7 +61,7 @@ besideRatio m n p1 p2 =
       (p1 b1) ++ (p2 b2) 
 
 beside : Picture -> Picture -> Picture 
-beside p1 p2 = blank
+beside = besideRatio 1 1 
 
 -- Exercise 6
 
