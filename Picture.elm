@@ -100,7 +100,7 @@ ttile fish =
     fishN = fish |> toss |> flip
     fishE = fishN |> turn |> turn |> turn 
   in 
-    overall [fish, fishN, fishE]
+    over fish (over fishN fishE)
 
 -- Exercise 10
 
