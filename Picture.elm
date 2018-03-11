@@ -129,13 +129,14 @@ side n fish =
 -- Exercise 12
 
 corner : Int -> Picture -> Picture 
-corner n fish = 
-  let 
-    (c, s) = 
-      if n == 1 then (blank, blank)
-      else (corner (n - 1) fish, side (n - 1) fish)
-  in 
-    quartet c s (turn s) (utile fish)
+corner n fish =
+  if n == 0 then blank 
+  else  
+    let 
+      c = corner (n - 1) fish 
+      s = side (n - 1) fish 
+    in 
+      quartet c s (turn s) (utile fish)
 
 -- Exercise 13
 
