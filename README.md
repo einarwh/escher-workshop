@@ -276,13 +276,15 @@ I won't lie though - those two exercises are probably the most difficult ones in
 
 The one you'll tackle first is `side`, a function that takes an integer `n` and a picture `p` (the fish) as parameters to produce a recursive picture. The integer designates the depth of recursion. 
 
-To understand the task better, let's look at the degenerate case where `n = 1` and the recursion stops. It should look like this:
+For the degenerate case where `n = 0` and the recursion stops, `side` is terribly boring. It's just the `blank` picture that renders _nothing_.
+
+The first level of recursion, where `n = 1`, is more interesting, and sheds more light onto the nature of `side`. It should look like this:
 
 <img src="files/side-1.svg" width="226" height="232">
 
-It's not so complex. It is a `quartet` where the pictures to the "north-west" (top left) and "north-east" are blank, whereas the "south-west" and "south-east" are t-tiles in different states of turning. 
+It's not so complex. It is a `quartet` where the pictures to the "north-west" (top left) and "north-east" are blank, whereas the "south-west" and "south-east" are t-tiles in different states of turning. The blank pictures in the "north" are more interesting than you might think: they should be produced by calling `side` recursively with `n` decremented from 1 to 0. The reason you're looking at blanks is that `side 0` produces blanks. 
 
-The recursion should happen in the "northern" pictures. So for `n = 2`, you'd have instances of `side 1` where you previously had blanks. This yields the following picture: 
+For `n = 2`, you'd have instances of `side 1` where you previously had blanks. This yields the following picture: 
 
 <img src="files/side-2.svg" width="226" height="232">
 
@@ -292,7 +294,9 @@ And so on and so forth.
 
 Next, you should write the second recursive function, called `corner`. Just like `side`, it takes an integer `n` and a picture `p` (the fish) as parameters to produce a recursive picture. 
 
-The degenerate case of `n = 1` is even simpler than for `side`:
+The degenerate case of `n = 0` is exactly as boring as before: the `blank` picture.
+
+For `n = 1`, `corner` is just slightly more interesting:
 
 <img src="files/corner-1.svg" width="226" height="232">
 
