@@ -118,22 +118,25 @@ utile fish =
 
 side : Int -> Picture -> Picture 
 side n fish = 
-  let 
-    s = if n == 1 then blank else side (n - 1) fish 
-    t = ttile fish 
-  in 
-    quartet s s (turn t) t  
+  if n == 0 then blank 
+  else 
+    let
+      s = side (n - 1) fish 
+      t = ttile fish 
+    in 
+      quartet s s (turn t) t  
 
 -- Exercise 12
 
 corner : Int -> Picture -> Picture 
-corner n fish = 
-  let 
-    (c, s) = 
-      if n == 1 then (blank, blank)
-      else (corner (n - 1) fish, side (n - 1) fish)
-  in 
-    quartet c s (turn s) (utile fish)
+corner n fish =
+  if n == 0 then blank 
+  else  
+    let 
+      c = corner (n - 1) fish 
+      s = side (n - 1) fish 
+    in 
+      quartet c s (turn s) (utile fish)
 
 -- Exercise 13
 
