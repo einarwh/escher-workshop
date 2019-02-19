@@ -188,6 +188,8 @@ What happens if you render `beside f (beside (turn f) (turn (turn f)))`? How wou
 
 Can you turn the composite picture you just made? 
 
+(_Optional bonus exercise_: Speaking of turning: you probably implemented `besideRatio` by manipulating boxes, just like you did for `aboveRatio` in Exercise 4 - right? Try to implement it by calling `aboveRatio` and `turn` instead.)
+
 ### Exercise 6 : quartet
 
 You might feel at this point that you're progressing slowly, and that "Square Limit" must be miles off. Unless you've cheated, you still haven't seen a single fish. Despair not! You have come further along than you might think. Indeed, you are already ready to leave the low-level world of vectors completely behind! From now on, you'll concentrate on using the simple picture combinators you've written to create more powerful ones. 
