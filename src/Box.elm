@@ -7,8 +7,10 @@ type alias Box =
   , b : Vector
   , c : Vector }
 
+-- Exercise 1 
+
 turnBox : Box -> Box 
 turnBox { a, b, c } = 
-  { a = add a b
-  , b = c
-  , c = neg b }
+  { a = a 
+  , b = b 
+  , c = c }
