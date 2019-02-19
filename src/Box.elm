@@ -11,6 +11,6 @@ type alias Box =
 
 turnBox : Box -> Box 
 turnBox { a, b, c } = 
-  { a = a 
-  , b = b 
-  , c = c }
+  { a = add a b 
+  , b = c 
+  , c = neg b }
