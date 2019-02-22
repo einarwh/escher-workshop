@@ -16,6 +16,10 @@ blank _ = []
 turn : Picture -> Picture
 turn p = p
 
+-- Entirely optional bonus exercise:
+times : Int -> (a -> a) -> (a -> a)
+times n fn = identity
+
 -- Exercise 2
 
 flip : Picture -> Picture 
