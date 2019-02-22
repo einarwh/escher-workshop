@@ -46,7 +46,7 @@ At this point, you probably have questions! Here are some answers, that may or m
 
 Initially, the box looks like this: 
 ```
-box = { a = { x = 75.0, y = 75.0 }
+box = { a = { x = 125.0, y = 75.0 }
       , b = { x = 250.0, y = 0.0 }
       , c = { x = 0.0, y = 250.0 } }
 ```
@@ -125,8 +125,6 @@ Here's how the flipped F looks with box and arrows:
 <img src="files/letter-f-flipped-arrows.svg" width="199" height="199">
 
 You should be able to work out the vector arithmetic on your own.
-
-_Annoying pitfall: when calling `flip` in `Main.elm`, you'll need to prefix it with the module name, like so: `Picture.flip`. The reason is that there already is another `flip` function defined in the `Basics` module, which Elm imports by default._
 
 Note that flipping a picture twice (indeed any even number of times) produces the original picture. 
 
