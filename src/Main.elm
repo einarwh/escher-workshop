@@ -37,7 +37,8 @@ main =
     sw = s
     sm = o
     se = n
-    zoom p = nonet nw nm ne mw p me sw sm se   in
+    zoom p = nonet nw nm ne mw p me sw sm se   
+  in
     box |> (nonet nw nm ne mw mm me sw sm se |> zoom |> zoom)
         |> toSvgWithBoxes (500, 500) [ ]
         |> placeInsideDiv
