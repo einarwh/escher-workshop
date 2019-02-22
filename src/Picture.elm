@@ -22,7 +22,7 @@ times n fn =
   if n == 0 then identity 
   else fn >> (times (n - 1) fn)
 
-turns : Int -> (Picture -> Picture)
+turns : Int -> Picture -> Picture
 turns n = times n turn 
 
 -- Exercise 2

@@ -4,24 +4,31 @@ import Letter exposing (..)
 import Figure exposing (george)
 import Fishy exposing (fishShapes)
 import Fitting exposing (createPicture)
+import Box exposing (..)
 import Picture exposing (..)
-import Rendering exposing (toSvg)
+import Rendering exposing (..)
 import Svg exposing (Svg)
+import Html exposing (..)
+import Html.Attributes exposing (..)
+
+placeInsideDiv : Svg msg -> Html msg 
+placeInsideDiv svg = 
+  div [ style "padding" "50px" ] [ svg ]
 
 main : Svg msg
 main = 
   let 
-    box = { a = { x = 75.0, y = 75.0 }
+    box = { a = { x = 125.0, y = 75.0 }
           , b = { x = 250.0, y = 0.0 }
           , c = { x = 0.0, y = 250.0 } }
-    p = createPicture george
-    nw = p
-    ne = p |> Picture.flip |> turn |> turn
-    sw = p |> turn |> turn
-    se = p |> Picture.flip 
-    pattern p = quartet p blank blank p 
-    qq p = quartet p p p p 
-  in     
+    g = createPicture george
+    nw = g
+    ne = g |> flip |> turn |> turn
+    sw = g |> turn |> turn
+    se = g |> flip
+    pattern p = quartet p blank blank p
+    qq p = quartet p p p p
+  in
     box |> (quartet nw ne sw se |> pattern |> qq)
-        |> toSvg (400, 400)
- 
+        |> toSvgWithBoxes (500, 500) [ ]
+        |> placeInsideDiv
