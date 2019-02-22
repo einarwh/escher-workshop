@@ -23,6 +23,6 @@ main =
           , c = { x = 0.0, y = 250.0 } }
     p = createPicture fLetter
   in
-    box |> besideRatio 1 2 p (beside (turn p) (turn (turn p))
+    box |> besideRatio 1 2 p (beside (turn p) (turn (turn p)))
         |> toSvgWithBoxes (500, 500) [ ]
         |> placeInsideDiv
