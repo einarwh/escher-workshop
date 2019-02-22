@@ -22,12 +22,8 @@ times n fn =
   if n == 0 then identity 
   else fn >> (times (n - 1) fn)
 
-turns : Int -> (Picture -> Picture)
+turns : Int -> Picture -> Picture
 turns n = times n turn 
-
--- Entirely optional bonus exercise:
-times : Int -> (a -> a) -> (a -> a)
-times n fn = identity
 
 -- Exercise 2
 
