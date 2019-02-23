@@ -18,7 +18,7 @@ git clone https://github.com/einarwh/escher-workshop
 
 You're not starting from scratch, the repo contains a number of `.elm` files containing Elm modules. Most of them you can safely ignore in this workshop. But some of them you'll become familiar with. 
 
-First though, you can start the application by typing `elm-reactor` in your terminal. If you open a browser at `http://localhost:8000/Main.elm` you should see something that looks like this:
+First though, you can start the application by typing `elm reactor` in your terminal. If you open a browser at `http://localhost:8000/src/Main.elm` you should see something that looks like this:
 
 <img src="files/letter-f.svg" width="200" height="200">
 
