@@ -1,6 +1,6 @@
-# Escher-in-Elm Workshop
+# The Escher School of Fish Workshop
 
-Welcome to the Escher-in-Elm Workshop!
+Welcome to The Escher School of Fish Workshop!
 
 This workshop is based on [the revised 2002 edition](https://eprints.soton.ac.uk/257577/1/funcgeo2.pdf) of the classic 1982 paper "Functional Geometry" by Peter Henderson. The paper shows the functional decomposition and reconstruction of Escher's woodcutting "Square Limit", a beautiful recursive tesselation of interleaving fish. 
 
