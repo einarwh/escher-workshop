@@ -8,6 +8,7 @@ import Picture exposing (..)
 import Mirror exposing (..)
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
+import Html.Attributes
 
 f2s : Float -> String 
 f2s = String.fromFloat
@@ -120,6 +121,9 @@ bcolor = "#2381bf"
 ccolor : String 
 ccolor = "#27b15b"
 
+axiscolor : String 
+axiscolor = "black"
+
 toBoxArrows : (Vector -> Vector) -> Box -> List (Svg msg)
 toBoxArrows m { a, b, c } =
   [ toBoxLine m { x = 0, y = 0 } a ("a-arrow", acolor)
@@ -148,7 +152,7 @@ toBoxArrowLines m { a, b, c } =
 
 createAxisList : Int -> Int -> List Int 
 createAxisList interval n = 
-  if n < 0 then []
+  if n < 1 then []
   else 
     let next = n - interval
     in 
@@ -158,7 +162,7 @@ createXAxisElement : Int -> Int -> Svg msg
 createXAxisElement y x = 
   Svg.line 
     [ x1 <| i2s x
-    , y1 <| i2s y
+    , y1 <| i2s (y + 3)
     , x2 <| i2s x
     , y2 <| i2s (y - 3)
     , stroke "black"
@@ -167,14 +171,14 @@ createXAxisElement y x =
 createXAxis : Int -> Int -> List (Svg msg) 
 createXAxis xmax ypos = 
   let 
-    axisList = createAxisList 20 xmax
+    axisList = createAxisList 40 xmax
   in 
-    axisList |> List.map (\x -> xmax - x) |> List.map (createXAxisElement ypos)
+    axisList |> List.map (\x -> xmax - x) |> List.map (createXAxisElement ypos) |> List.drop 1
 
 createYAxisElement : Int -> Int -> Svg msg
 createYAxisElement x y = 
   Svg.line 
-    [ x1 <| i2s x
+    [ x1 <| i2s (x - 3)
     , y1 <| i2s y
     , x2 <| i2s (x + 3)
     , y2 <| i2s y
@@ -184,9 +188,9 @@ createYAxisElement x y =
 createYAxis : Int -> Int -> List (Svg msg) 
 createYAxis xpos ymax = 
   let 
-    axisList = createAxisList 20 ymax
+    axisList = createAxisList 40 ymax
   in 
-    axisList |> List.map (createYAxisElement xpos)
+    axisList |> List.map (createYAxisElement xpos) |> List.drop 1
 
 createMarker : (String, String) -> Svg msg
 createMarker (markerId, color) = 
@@ -215,15 +219,17 @@ createAxes w h =
         , x2 <| i2s w
         , y2 yy
         , stroke axisColor
-        , strokeWidth "1.5" ] []
+        , strokeWidth "1.0"
+        , markerEnd <| "url(#axis-arrow)" ] []
     yAxis =  
       Svg.line 
         [ x1 xx
-        , y1 <| i2s 0
+        , y1 <| i2s w
         , x2 xx
-        , y2 <| i2s w
+        , y2 <| i2s 0
         , stroke axisColor
-        , strokeWidth "1.5" ] []
+        , strokeWidth "1.0"
+        , markerEnd <| "url(#axis-arrow)" ] []
   in 
     [ xAxis, yAxis ] ++ createXAxis w h ++ createYAxis 0 h
 
@@ -231,29 +237,41 @@ toSvgWithBoxes : (Int, Int) -> List Box -> Rendering -> Svg msg
 toSvgWithBoxes bounds boxes rendering = 
   let
     (w, h) = bounds
-    viewBoxValue = ["0", "0", i2s w, i2s h] |> String.join " "
+    -- viewBoxValue = ["-2", "-2", i2s w, i2s h] |> String.join " "
     mirror = mirrorVector <| toFloat h
     boxShapes = boxes |> List.map (toBoxShape mirror) |> List.map toBoxPolylineElement
     boxArrows = boxes |> List.concatMap (toBoxArrows mirror)
     toElement (shape, style) = toSvgElement style (mirrorShape mirror shape)
     things = rendering |> List.map toElement
     axes = createAxes w h
-    markers =
+    vectorMarkers =
       [ ("a-arrow", acolor)
       , ("b-arrow", bcolor)
-      , ("c-arrow", ccolor) ]
+      , ("c-arrow", ccolor)
+      , ("axis-arrow", axiscolor) ]
+    axisMarker = ("axis-arrow", axiscolor)
+    markers = vectorMarkers ++ [ axisMarker ]
     defs = markers |> List.map createMarker |> Svg.defs []
     svgElements = 
       case boxes of 
       [] -> things
       _ -> ([defs] ++ things ++ boxShapes ++ boxArrows ++ axes)
+    xStr = "-3"
+    yStr = "0"
+    widthStr = i2s (w + 3)
+    heightStr = i2s (h + 3)
+    viewBoxStr = [ xStr, yStr, widthStr, heightStr ] |> String.join " "
   in
+    -- version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     svg
       [ version "1.1"
-      , x "0"
-      , y "0"
-      , width (i2s w)
-      , height (i2s h) ]
+      , Html.Attributes.attribute "xmlns" "http://www.w3.org/2000/svg"
+      , viewBox viewBoxStr
+      , x (xStr ++ "px")
+      , y (yStr ++ "px")
+      , width widthStr
+      , height heightStr 
+      , Svg.Attributes.style "background-color:white" ]
       svgElements
 
 toSvg : (Int, Int) -> Rendering -> Svg msg 
